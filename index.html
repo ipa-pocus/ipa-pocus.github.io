@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>International POCUS Academy — Prototype v0.2</title>
+<meta name="description" content="The global network of point-of-care ultrasound schools. Training, certification and instant certificate verification.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root{
+  --ink:#0B1720;
+  --panel:#0E2230;
+  --panel-2:#122B3C;
+  --paper:#F5F8F9;
+  --card:#FFFFFF;
+  --line:#D9E4E9;
+  --echo:#E9F1F4;
+  --teal:#0E7C86;
+  --teal-deep:#0A5A62;
+  --pulse:#F2A93B;
+  --ok:#2E9E6B;
+  --warn:#DE9A26;
+  --bad:#C4453B;
+  --gray:#8CA3AE;
+  --text:#182E3A;
+  --muted:#54707C;
+  --radius:14px;
+  --maxw:1120px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+}
+body{
+  font-family:'IBM Plex Sans',system-ui,-apple-system,sans-serif;
+  color:var(--text);
+  background:var(--paper);
+  line-height:1.6;
+  font-size:16px;
+}
+img,svg{display:block;max-width:100%}
+a{color:var(--teal-deep)}
+:focus-visible{outline:3px solid var(--pulse);outline-offset:2px;border-radius:4px}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+
+/* ---------- header ---------- */
+.top{
+  position:sticky;top:0;z-index:50;
+  background:rgba(245,248,249,.92);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.top-in{display:flex;align-items:center;gap:18px;height:64px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+.brand-mark{width:34px;height:34px;flex:0 0 auto}
+.brand-name{font-family:'IBM Plex Serif',serif;font-weight:600;font-size:15px;line-height:1.15}
+.brand-name small{display:block;font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:10px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+.ver{font-size:10px;color:var(--gray);letter-spacing:.08em;margin-left:2px;align-self:flex-start;padding-top:12px}
+
+nav.main{margin-left:auto;display:flex;gap:20px}
+nav.main a{color:var(--text);text-decoration:none;font-size:14px;font-weight:500}
+nav.main a:hover{color:var(--teal-deep)}
+
+.top-actions{display:flex;align-items:center;gap:12px;margin-left:8px}
+.btn{
+  display:inline-block;border:0;cursor:pointer;text-decoration:none;text-align:center;
+  font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:14px;
+  padding:10px 18px;border-radius:999px;transition:background .15s,color .15s,border-color .15s;
+}
+.btn-teal{background:var(--teal);color:#fff}
+.btn-teal:hover{background:var(--teal-deep)}
+.btn-pulse{background:var(--pulse);color:#231708}
+.btn-pulse:hover{background:#E39A28}
+.btn-ghost{background:transparent;color:#E9F1F4;border:1px solid rgba(233,241,244,.45)}
+.btn-ghost:hover{border-color:#E9F1F4}
+
+.lang{display:flex;gap:2px;border:1px solid var(--line);border-radius:999px;padding:2px;background:#fff}
+.lang button{border:0;background:transparent;font-family:'IBM Plex Mono',monospace;font-size:11px;padding:5px 9px;border-radius:999px;color:var(--muted);cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink);color:#fff}
+
+.burger{display:none;margin-left:auto;border:1px solid var(--line);background:#fff;border-radius:8px;padding:8px 10px;cursor:pointer}
+.burger span{display:block;width:18px;height:2px;background:var(--ink);margin:3px 0}
+
+/* ---------- hero ---------- */
+.hero{
+  background:
+    radial-gradient(1200px 500px at 85% -10%, rgba(14,124,134,.25), transparent 60%),
+    linear-gradient(180deg, var(--panel) 0%, var(--ink) 100%);
+  color:#EAF2F5;
+  overflow:hidden;
+  position:relative;
+}
+.hero-in{
+  display:grid;grid-template-columns:1.05fr .95fr;gap:32px;align-items:center;
+  padding:72px 0 84px;position:relative;
+}
+.eyebrow{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--pulse);margin-bottom:18px;display:flex;align-items:center;gap:10px;
+}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--pulse)}
+h1{
+  font-family:'IBM Plex Serif',serif;font-weight:600;
+  font-size:clamp(30px,4.6vw,52px);line-height:1.12;letter-spacing:-.01em;
+  margin-bottom:20px;color:#F4FAFC;
+}
+h1 em{font-style:normal;color:var(--pulse)}
+.hero p.lead{font-size:17px;color:#B9CDD6;max-width:52ch;margin-bottom:30px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero-note{margin-top:26px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6E8894;letter-spacing:.06em}
+
+/* --- ultrasound sector --- */
+.scan{position:relative;aspect-ratio:1/0.98;min-height:300px}
+.scan svg{width:100%;height:100%}
+.sweep-group{transform-origin:250px 30px;animation:sweep 7s ease-in-out infinite alternate}
+@keyframes sweep{from{transform:rotate(-30deg)}to{transform:rotate(30deg)}}
+.scan .hud{
+  position:absolute;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#7FA0AC;letter-spacing:.08em;
+}
+.hud.tl{top:4px;left:8px}
+.hud.tr{top:4px;right:8px;text-align:right}
+.hud.bl{bottom:2px;left:8px;color:#5E7C88}
+
+/* ---------- readouts ---------- */
+.readouts{border-bottom:1px solid var(--line);background:var(--card)}
+.readouts-in{display:grid;grid-template-columns:repeat(4,1fr);gap:0;padding:34px 0 26px}
+.ro{padding:0 22px;border-left:1px solid var(--line)}
+.ro:first-child{border-left:0;padding-left:0}
+.ro b{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:clamp(26px,3.4vw,38px);color:var(--ink);display:block;line-height:1.1}
+.ro span{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:7px;margin-top:6px}
+.ro span::before{content:"+";font-family:'IBM Plex Mono',monospace;color:var(--pulse);font-size:14px}
+.ro-note{grid-column:1/-1;font-size:11px;color:var(--gray);padding-top:16px}
+
+/* ---------- sections ---------- */
+section{padding:76px 0}
+.sec-head{max-width:640px;margin-bottom:40px}
+.kicker{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-bottom:12px}
+h2{font-family:'IBM Plex Serif',serif;font-weight:600;font-size:clamp(24px,3.2vw,34px);line-height:1.2;color:var(--ink);margin-bottom:12px}
+.sec-head p{color:var(--muted)}
+
+/* ---------- verify ---------- */
+#verify{background:linear-gradient(180deg,var(--ink),var(--panel-2));color:#E5EFF3}
+#verify .kicker{color:var(--pulse)}
+#verify h2{color:#F4FAFC}
+#verify .sec-head p{color:#A9C0CA}
+.verify-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}
+.vform{
+  background:rgba(9,20,28,.55);border:1px solid rgba(127,160,172,.25);border-radius:var(--radius);
+  padding:26px;
+}
+.vform label{display:block;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#8FB0BC;margin:16px 0 7px}
+.vform label:first-of-type{margin-top:0}
+.vform input{
+  width:100%;background:#0A161E;border:1px solid rgba(127,160,172,.35);border-radius:9px;
+  color:#EAF4F8;font-family:'IBM Plex Mono',monospace;font-size:15px;padding:12px 14px;
+}
+.vform input::placeholder{color:#4E6873}
+.vform input:focus{border-color:var(--teal);outline:none}
+.vform .btn{width:100%;margin-top:22px}
+.demo-chips{margin-top:18px;font-size:12px;color:#7FA0AC}
+.demo-chips button{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;color:#BFD6DE;background:rgba(127,160,172,.12);
+  border:1px solid rgba(127,160,172,.3);border-radius:6px;padding:4px 8px;margin:6px 6px 0 0;cursor:pointer;
+}
+.demo-chips button:hover{border-color:var(--pulse);color:var(--pulse)}
+
+.vresult{min-height:280px}
+.vcard{
+  background:#0A161E;border:1px solid rgba(127,160,172,.3);border-radius:var(--radius);
+  padding:26px;display:none;
+}
+.vcard.show{display:block;animation:pop .25s ease}
+@keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.badge{display:inline-flex;align-items:center;gap:9px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:7px 14px;border-radius:999px;border:1px solid}
+.badge i{width:9px;height:9px;border-radius:50%;display:inline-block}
+.badge.ok{color:#7FE0B0;border-color:#2E9E6B}.badge.ok i{background:#2E9E6B;box-shadow:0 0 10px #2E9E6B}
+.badge.warn{color:#FFD08A;border-color:#DE9A26}.badge.warn i{background:#DE9A26;box-shadow:0 0 10px #DE9A26}
+.badge.off{color:#9FB4BD;border-color:#5E7C88}.badge.off i{background:#5E7C88}
+.badge.bad{color:#FF9C93;border-color:#C4453B}.badge.bad i{background:#C4453B;box-shadow:0 0 10px #C4453B}
+.vcard h3{font-family:'IBM Plex Serif',serif;font-size:24px;color:#F4FAFC;margin:18px 0 4px}
+.vcard .vtype{color:#A9C0CA;font-size:14px;margin-bottom:18px}
+.vrows{border-top:1px solid rgba(127,160,172,.22)}
+.vrow{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px solid rgba(127,160,172,.14);font-size:13px}
+.vrow b{font-weight:500;color:#D7E6EC}
+.vrow span{color:#8FB0BC;font-family:'IBM Plex Mono',monospace;font-size:12px;text-align:right}
+.vempty{
+  border:1px dashed rgba(127,160,172,.35);border-radius:var(--radius);padding:26px;color:#7FA0AC;font-size:14px;
+}
+.vfail{display:none;border:1px solid rgba(196,69,59,.5);background:rgba(196,69,59,.08);border-radius:var(--radius);padding:22px;color:#F1B7B1;font-size:14px}
+.vfail.show{display:block;animation:pop .25s ease}
+
+/* ---------- network ---------- */
+.grid-schools{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.school{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px 16px;
+  transition:border-color .15s, transform .15s;
+}
+.school:hover{border-color:var(--teal);transform:translateY(-2px)}
+.school .cc{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;color:var(--gray)}
+.school h3{font-family:'IBM Plex Serif',serif;font-size:18px;color:var(--ink);margin:8px 0 4px;font-weight:600}
+.school p{font-size:12.5px;color:var(--muted);margin-bottom:12px}
+.tag{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;padding:4px 9px;border-radius:6px}
+.tag.nat{background:rgba(14,124,134,.1);color:var(--teal-deep)}
+.tag.rep{background:var(--echo);color:var(--muted)}
+.school.join{border-style:dashed;background:transparent;display:flex;flex-direction:column;justify-content:center}
+.school.join h3{color:var(--teal-deep)}
+.school.join a{font-size:13px;font-weight:600}
+
+/* ---------- ladder ---------- */
+#education{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.ladder{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;counter-reset:step}
+.step{position:relative;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:22px 20px}
+.step::before{
+  counter-increment:step;content:"0" counter(step);
+  font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--pulse);letter-spacing:.14em;
+}
+.step h3{font-family:'IBM Plex Serif',serif;font-size:19px;color:var(--ink);margin:10px 0 8px;font-weight:600}
+.step p{font-size:13.5px;color:var(--muted);margin-bottom:14px}
+.validity{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal-deep);background:rgba(14,124,134,.08);padding:5px 10px;border-radius:6px;display:inline-block}
+
+/* ---------- journal ---------- */
+.journal-grid{display:grid;grid-template-columns:220px 1fr;gap:40px;align-items:center}
+.cover{
+  aspect-ratio:3/4;border-radius:10px;position:relative;overflow:hidden;
+  background:linear-gradient(165deg,var(--panel) 0%,var(--ink) 100%);
+  border:1px solid rgba(127,160,172,.3);box-shadow:0 18px 40px -18px rgba(11,23,32,.45);
+  padding:18px;display:flex;flex-direction:column;color:#EAF2F5;
+}
+.cover .jt{font-family:'IBM Plex Serif',serif;font-size:22px;font-weight:600;line-height:1.15}
+.cover .jm{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--pulse);letter-spacing:.16em;margin-top:6px}
+.cover svg{position:absolute;bottom:-12px;right:-16px;width:70%;opacity:.75}
+.jfacts{display:flex;gap:26px;flex-wrap:wrap;margin-top:22px}
+.jfact b{font-family:'IBM Plex Mono',monospace;font-size:20px;font-weight:500;color:var(--ink);display:block}
+.jfact span{font-size:12.5px;color:var(--muted)}
+
+/* ---------- knowledge ---------- */
+#knowledge{background:var(--card);border-top:1px solid var(--line)}
+.protocols{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:34px}
+.proto{
+  font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:500;color:var(--ink);
+  background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:10px 18px;text-decoration:none;
+}
+.proto:hover{border-color:var(--pulse);color:var(--teal-deep)}
+.topics{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.topic{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.topic h3{font-family:'IBM Plex Serif',serif;font-size:17px;font-weight:600;color:var(--ink);margin-bottom:8px}
+.topic p{font-size:13.5px;color:var(--muted)}
+
+/* ---------- news ---------- */
+.ne-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:44px}
+.ne h3{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+.news-item{padding:16px 0;border-top:1px solid var(--line)}
+.news-item time{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gray)}
+.news-item a{display:block;font-family:'IBM Plex Serif',serif;font-size:17px;font-weight:600;color:var(--ink);text-decoration:none;margin-top:4px;line-height:1.35}
+.news-item a:hover{color:var(--teal-deep)}
+.ev{display:flex;gap:16px;padding:14px 0;border-top:1px solid var(--line)}
+.ev .d{flex:0 0 54px;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 4px}
+.ev .d b{font-family:'IBM Plex Mono',monospace;font-size:19px;color:var(--ink);display:block;line-height:1}
+.ev .d span{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--pulse);text-transform:uppercase;letter-spacing:.1em}
+.ev h4{font-size:14.5px;font-weight:600;color:var(--ink);line-height:1.35}
+.ev p{font-size:12.5px;color:var(--muted)}
+
+/* ---------- cta band ---------- */
+.band{background:linear-gradient(120deg,var(--teal-deep),var(--teal));color:#fff;border-radius:20px;padding:44px 40px;display:flex;align-items:center;gap:30px;justify-content:space-between;flex-wrap:wrap}
+.band h2{color:#fff;margin-bottom:6px}
+.band p{color:#D2ECEF;max-width:52ch}
+
+/* ---------- footer ---------- */
+footer{background:var(--ink);color:#9FB4BD;padding:52px 0 32px;font-size:13.5px}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px;margin-bottom:36px}
+footer h4{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#6E8894;margin-bottom:14px}
+footer a{color:#C6D8DF;text-decoration:none;display:block;margin-bottom:9px}
+footer a:hover{color:var(--pulse)}
+.foot-note{border-top:1px solid rgba(127,160,172,.2);padding-top:20px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5E7C88;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+
+/* ---------- responsive ---------- */
+@media (max-width:960px){
+  nav.main{display:none;position:absolute;top:64px;left:0;right:0;background:var(--card);border-bottom:1px solid var(--line);flex-direction:column;gap:0;padding:10px 20px}
+  nav.main.open{display:flex}
+  nav.main a{padding:12px 0;border-bottom:1px solid var(--echo)}
+  .burger{display:block}
+  .hero-in{grid-template-columns:1fr;padding:52px 0 60px}
+  .scan{max-width:440px;margin:0 auto;min-height:260px}
+  .readouts-in{grid-template-columns:1fr 1fr;gap:22px}
+  .ro{border-left:0;padding:0}
+  .verify-grid,.journal-grid,.ne-grid{grid-template-columns:1fr}
+  .grid-schools{grid-template-columns:1fr 1fr}
+  .ladder{grid-template-columns:1fr 1fr}
+  .topics{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .journal-grid .cover{max-width:220px}
+}
+@media (max-width:520px){
+  .grid-schools,.ladder{grid-template-columns:1fr}
+  section{padding:56px 0}
+}
+</style>
+</head>
+<body>
+
+<!-- ======= HEADER ======= -->
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="#top" aria-label="International POCUS Academy — home">
+      <svg class="brand-mark" viewBox="0 0 34 34" aria-hidden="true">
+        <path d="M17 3 L31 29 A17 17 0 0 1 3 29 Z" fill="none" stroke="#0E7C86" stroke-width="2.2"/>
+        <path d="M17 3 L24.6 17.2" stroke="#F2A93B" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="17" cy="22" r="2.4" fill="#0B1720"/>
+      </svg>
+      <span class="brand-name">International<br>POCUS Academy</span>
+      <span class="ver mono">v0.2</span>
+    </a>
+
+    <button class="burger" aria-label="Menu" aria-expanded="false" onclick="toggleNav(this)">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="main" id="mainNav" aria-label="Main">
+      <a href="#network" data-i="nav_schools">Schools</a>
+      <a href="#education" data-i="nav_edu">Education</a>
+      <a href="#journal" data-i="nav_journal">Journal</a>
+      <a href="#knowledge" data-i="nav_kh">Knowledge Hub</a>
+      <a href="#news" data-i="nav_news">News &amp; Events</a>
+    </nav>
+
+    <div class="top-actions">
+      <div class="lang" role="group" aria-label="Language">
+        <button data-lang="en" aria-pressed="true" onclick="setLang('en')">EN</button>
+        <button data-lang="ru" aria-pressed="false" onclick="setLang('ru')">RU</button>
+        <button data-lang="sr" aria-pressed="false" onclick="setLang('sr')">SR</button>
+      </div>
+      <a class="btn btn-teal" href="#verify" data-i="btn_verify_top">Verify certificate</a>
+    </div>
+  </div>
+</header>
+
+<!-- ======= HERO ======= -->
+<section class="hero" id="top" style="padding:0">
+  <div class="wrap hero-in">
+    <div>
+      <div class="eyebrow" data-i="hero_eyebrow">Global network · founded in Serbia</div>
+      <h1 data-i="hero_h1">Point-of-care ultrasound, taught — and <em>verified</em> — worldwide.</h1>
+      <p class="lead" data-i="hero_lead">The International POCUS Academy unites national ultrasound schools across three continents: training clinicians, certifying skills to one standard, and letting any hospital verify a certificate in seconds.</p>
+      <div class="hero-cta">
+        <a class="btn btn-pulse" href="#verify" data-i="hero_cta1">Verify a certificate</a>
+        <a class="btn btn-ghost" href="#network" data-i="hero_cta2">Explore the schools</a>
+      </div>
+      <div class="hero-note" data-i="hero_note">eFAST · RUSH · FATE · BLUE · PROBE — one global standard</div>
+    </div>
+
+    <!-- ultrasound sector scan -->
+    <div class="scan" role="img" aria-label="Stylised ultrasound sector scan">
+      <div class="hud tl">IPA&nbsp;· B-MODE<br>PROBE&nbsp;C5-1</div>
+      <div class="hud tr">MI&nbsp;0.7&nbsp;&nbsp;TIS&nbsp;0.2<br>GAIN&nbsp;62%</div>
+      <div class="hud bl">PROTOTYPE&nbsp;RENDER&nbsp;·&nbsp;DEMO</div>
+      <svg viewBox="0 0 500 490" aria-hidden="true">
+        <defs>
+          <radialGradient id="fade" cx="50%" cy="6%" r="95%">
+            <stop offset="0%" stop-color="#173444"/>
+            <stop offset="55%" stop-color="#102534"/>
+            <stop offset="100%" stop-color="#0B1720"/>
+          </radialGradient>
+          <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#F2A93B" stop-opacity=".85"/>
+            <stop offset="100%" stop-color="#F2A93B" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+
+        <path d="M250 30 L468 400 A250 250 0 0 1 32 400 Z" fill="url(#fade)" stroke="#2C4B5C" stroke-width="1.5"/>
+
+        <g fill="none" stroke="#2C4B5C" stroke-width="1" stroke-dasharray="2 7">
+          <path d="M144 210 A125 125 0 0 1 356 210"/>
+          <path d="M91 300 A188 188 0 0 1 409 300"/>
+          <path d="M38 390 A250 250 0 0 1 462 390"/>
+        </g>
+
+        <g fill="#7FA0AC">
+          <ellipse cx="205" cy="235" rx="46" ry="17" opacity=".28"/>
+          <ellipse cx="300" cy="300" rx="60" ry="22" opacity=".18"/>
+          <ellipse cx="235" cy="345" rx="30" ry="11" opacity=".24"/>
+          <ellipse cx="188" cy="298" rx="17" ry="7" opacity=".35"/>
+        </g>
+
+        <g class="sweep-group">
+          <path d="M250 30 L250 455" stroke="url(#beam)" stroke-width="3"/>
+        </g>
+
+        <g stroke="#F2A93B" stroke-width="1.6">
+          <path d="M198 228 h14 M205 221 v14"/>
+          <path d="M292 293 h14 M299 286 v14"/>
+        </g>
+        <path d="M205 228 L299 293" stroke="#F2A93B" stroke-width="1" stroke-dasharray="3 5" opacity=".8"/>
+        <text x="262" y="252" font-family="IBM Plex Mono, monospace" font-size="12" fill="#F2A93B">D&nbsp;4.2&nbsp;cm</text>
+
+        <g font-family="IBM Plex Mono, monospace" font-size="11" fill="#5E7C88">
+          <text x="474" y="130">0</text>
+          <text x="474" y="215">4</text>
+          <text x="474" y="305">8</text>
+          <text x="470" y="395">12</text>
+        </g>
+        <g stroke="#5E7C88" stroke-width="1">
+          <path d="M466 125 h-8 M466 210 h-8 M466 300 h-8 M466 390 h-8"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ======= READOUTS ======= -->
+<div class="readouts">
+  <div class="wrap readouts-in">
+    <div class="ro"><b class="count" data-to="1240">0</b><span data-i="ro1">certificates issued</span></div>
+    <div class="ro"><b class="count" data-to="12">0</b><span data-i="ro2">countries in the network</span></div>
+    <div class="ro"><b class="count" data-to="14">0</b><span data-i="ro3">national schools &amp; branches</span></div>
+    <div class="ro"><b class="count" data-to="38">0</b><span data-i="ro4">courses held this year</span></div>
+    <div class="ro-note mono" data-i="ro_note">Prototype: figures shown are placeholders. On the live site these counters read directly from the certificate registry.</div>
+  </div>
+</div>
+
+<!-- ======= VERIFY ======= -->
+<section id="verify">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker" data-i="v_kick">Certificate registry</div>
+      <h2 data-i="v_h2">Verify a certificate in ten seconds</h2>
+      <p data-i="v_p">Every IPA certificate carries a unique number and a QR code. Scan the code — or type the number and the holder's surname — to see its status, level and validity. Try the live demo below.</p>
+    </div>
+
+    <div class="verify-grid">
+      <form class="vform" onsubmit="return doVerify(event)">
+        <label for="vnum" data-i="v_l1">Certificate number</label>
+        <input id="vnum" class="mono" placeholder="IPA-RS-2026-SP-0042" autocomplete="off">
+        <label for="vsur" data-i="v_l2">Holder's surname (Latin)</label>
+        <input id="vsur" placeholder="Petrović" autocomplete="off">
+        <button class="btn btn-pulse" type="submit" data-i="v_btn">Check certificate</button>
+        <div class="demo-chips">
+          <span data-i="v_demo">Demo data — tap to fill:</span>
+          <br>
+          <button type="button" onclick="fillDemo(0)">IPA-RS-2026-SP-0042 · Petrović</button>
+          <button type="button" onclick="fillDemo(1)">IPA-KZ-2024-EF-0118 · Akhmetov</button>
+          <button type="button" onclick="fillDemo(2)">IPA-RU-2019-RU-0007 · Ivanova</button>
+        </div>
+      </form>
+
+      <div class="vresult" aria-live="polite">
+        <div class="vempty" id="vEmpty" data-i="v_empty">
+          The result card will appear here — with a colour-coded status: <b style="color:#7FE0B0">active</b>, <b style="color:#FFD08A">expiring</b>, <b style="color:#9FB4BD">expired</b> or <b style="color:#FF9C93">revoked</b>. Contact details are never shown.
+        </div>
+        <div class="vfail" id="vFail" data-i="v_fail">
+          <b>Certificate not found.</b> Check the number and surname, or contact the issuing school.
+        </div>
+        <article class="vcard" id="vCard">
+          <span class="badge" id="cBadge"><i></i><span id="cStatus"></span></span>
+          <h3 id="cName"></h3>
+          <div class="vtype" id="cType"></div>
+          <div class="vrows">
+            <div class="vrow"><b data-i="v_r1">Certificate no.</b><span id="cNum"></span></div>
+            <div class="vrow"><b data-i="v_r2">Issued by</b><span id="cSchool"></span></div>
+            <div class="vrow"><b data-i="v_r3">Issued</b><span id="cIssued"></span></div>
+            <div class="vrow"><b data-i="v_r4">Valid until</b><span id="cValid"></span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= NETWORK ======= -->
+<section id="network">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker" data-i="net_kick">The network</div>
+      <h2 data-i="net_h2">National schools on three continents</h2>
+      <p data-i="net_p">Each school teaches to the common IPA curriculum, issues certificates into the shared registry, and runs its own page on this platform — courses, reports and faculty.</p>
+    </div>
+    <div class="grid-schools">
+      <a class="school" href="#"><span class="cc mono">RS</span><h3 data-i="c_rs">Serbia</h3><p data-i="c_rs_d">Founding school · Požarevac</p><span class="tag nat" data-i="tag_nat">National school</span></a>
+      <a class="school" href="#"><span class="cc mono">RU</span><h3 data-i="c_ru">Russia</h3><p data-i="c_ru_d">Moscow school of POCUS</p><span class="tag nat" data-i="tag_nat">National school</span></a>
+      <a class="school" href="#"><span class="cc mono">KZ</span><h3 data-i="c_kz">Kazakhstan</h3><p data-i="c_nat_d">National POCUS school</p><span class="tag nat" data-i="tag_nat">National school</span></a>
+      <a class="school" href="#"><span class="cc mono">KG</span><h3 data-i="c_kg">Kyrgyzstan</h3><p data-i="c_nat_d">National POCUS school</p><span class="tag nat" data-i="tag_nat">National school</span></a>
+      <a class="school" href="#"><span class="cc mono">AM</span><h3 data-i="c_am">Armenia</h3><p data-i="c_nat_d">National POCUS school</p><span class="tag nat" data-i="tag_nat">National school</span></a>
+      <a class="school" href="#"><span class="cc mono">TJ</span><h3 data-i="c_tj">Tajikistan</h3><p data-i="c_nat_d">National POCUS school</p><span class="tag nat" data-i="tag_nat">National school</span></a>
+      <a class="school" href="#"><span class="cc mono">BA</span><h3 data-i="c_ba">Bosnia &amp; Herzegovina</h3><p data-i="c_rep_d">Regional branch</p><span class="tag rep" data-i="tag_rep">Representative</span></a>
+      <a class="school" href="#"><span class="cc mono">MK</span><h3 data-i="c_mk">North Macedonia</h3><p data-i="c_rep_d">Regional branch</p><span class="tag rep" data-i="tag_rep">Representative</span></a>
+      <a class="school" href="#"><span class="cc mono">HT</span><h3 data-i="c_ht">Haiti</h3><p data-i="c_rep_d">Regional branch</p><span class="tag rep" data-i="tag_rep">Representative</span></a>
+      <a class="school" href="#"><span class="cc mono">US</span><h3 data-i="c_us">United States</h3><p data-i="c_rep_d">Regional branch</p><span class="tag rep" data-i="tag_rep">Representative</span></a>
+      <a class="school" href="#"><span class="cc mono">AE</span><h3 data-i="c_ae">United Arab Emirates</h3><p data-i="c_rep_d">Regional branch</p><span class="tag rep" data-i="tag_rep">Representative</span></a>
+      <a class="school" href="#"><span class="cc mono">NG</span><h3 data-i="c_ng">Nigeria</h3><p data-i="c_rep_d">Regional branch</p><span class="tag rep" data-i="tag_rep">Representative</span></a>
+      <div class="school join">
+        <h3 data-i="join_n">Your country</h3>
+        <p data-i="join_d">Bring the IPA curriculum home.</p>
+        <a href="#open" data-i="join_a">How to open a school →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= EDUCATION ======= -->
+<section id="education">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker" data-i="edu_kick">Education &amp; certification</div>
+      <h2 data-i="edu_h2">One path, four steps</h2>
+      <p data-i="edu_p">From the first protocol course to an academic degree — every step is certified, numbered and verifiable in the registry.</p>
+    </div>
+    <div class="ladder">
+      <div class="step">
+        <h3>POCUS Practitioner</h3>
+        <p data-i="s1_d">Protocol courses: eFAST, RUSH, FATE, BLUE, PROBE. Hands-on training at a national school.</p>
+        <span class="validity" data-i="val5">valid 5 years</span>
+      </div>
+      <div class="step">
+        <h3>POCUS Specialist</h3>
+        <p data-i="s2_d">Advanced multi-protocol certification with a practical exam and a logbook of studies.</p>
+        <span class="validity" data-i="val5">valid 5 years</span>
+      </div>
+      <div class="step">
+        <h3>IPA Instructor</h3>
+        <p data-i="s3_d">Teaching qualification tied to real course activity within the network.</p>
+        <span class="validity" data-i="val3">valid 3 years</span>
+      </div>
+      <div class="step">
+        <h3>MD/PhD by Portfolio</h3>
+        <p data-i="s4_d">Academic recognition of published work, courses taught and clinical contribution.</p>
+        <span class="validity" data-i="vlife">lifetime</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= JOURNAL ======= -->
+<section id="journal">
+  <div class="wrap">
+    <div class="journal-grid">
+      <div class="cover" aria-label="Journal cover — placeholder">
+        <span class="jt">IPA Journal</span>
+        <span class="jm">VOL. 12 · No. 1 · 2026</span>
+        <svg viewBox="0 0 200 200" aria-hidden="true">
+          <path d="M100 10 L185 180 A100 100 0 0 1 15 180 Z" fill="none" stroke="#2C4B5C" stroke-width="2"/>
+          <path d="M100 10 L140 92" stroke="#F2A93B" stroke-width="2"/>
+        </svg>
+      </div>
+      <div>
+        <div class="kicker" data-i="j_kick">The journal</div>
+        <h2 data-i="j_h2">Peer-reviewed. Open access. DOI-ready.</h2>
+        <p style="color:var(--muted);max-width:56ch" data-i="j_p">The IPA Journal publishes clinical research, protocols and case studies in point-of-care ultrasound twice a year, with an international editorial board drawn from the network's schools. The archive moves to an open-journal platform with ISSN registration and persistent DOIs for every article.</p>
+        <div class="jfacts">
+          <div class="jfact"><b>2×</b><span data-i="jf1">issues per year</span></div>
+          <div class="jfact"><b>ISSN</b><span data-i="jf2">registration in progress</span></div>
+          <div class="jfact"><b>DOI</b><span data-i="jf3">per article, planned</span></div>
+        </div>
+        <p style="margin-top:24px"><a class="btn btn-teal" href="#" data-i="j_btn">Read the current issue</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= KNOWLEDGE ======= -->
+<section id="knowledge">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker" data-i="k_kick">Knowledge hub</div>
+      <h2 data-i="k_h2">Protocols, history and what comes next</h2>
+      <p data-i="k_p">A growing open library: step-by-step protocol guides with images and video, the history of POCUS, interventional techniques and AI in ultrasound.</p>
+    </div>
+    <div class="protocols">
+      <a class="proto" href="#">eFAST</a>
+      <a class="proto" href="#">RUSH</a>
+      <a class="proto" href="#">FATE</a>
+      <a class="proto" href="#">BLUE</a>
+      <a class="proto" href="#">PROBE</a>
+      <a class="proto" href="#">MSK&nbsp;US</a>
+    </div>
+    <div class="topics">
+      <div class="topic"><h3 data-i="t1_t">History of POCUS</h3><p data-i="t1_d">From the first A-mode probes to ultrasound in every pocket — how point-of-care imaging changed acute medicine.</p></div>
+      <div class="topic"><h3 data-i="t2_t">Interventional POCUS</h3><p data-i="t2_d">Ultrasound-guided vascular access, blocks and drainage: technique pages for anaesthesia and the ICU.</p></div>
+      <div class="topic"><h3 data-i="t3_t">AI &amp; ultrasound</h3><p data-i="t3_d">Neural networks that read images at the bedside — reviews, tools and honest limitations.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= NEWS & EVENTS ======= -->
+<section id="news">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker" data-i="n_kick">News &amp; events</div>
+      <h2 data-i="n_h2">What the network is doing</h2>
+    </div>
+    <div class="ne-grid">
+      <div class="ne">
+        <h3 data-i="n_h_news">Latest news · demo</h3>
+        <div class="news-item">
+          <time class="mono" data-i="n1_d">28 Jun 2026</time>
+          <a href="#" data-i="n1_t">Kazakhstan school reports 120 clinicians certified in eFAST this spring</a>
+        </div>
+        <div class="news-item">
+          <time class="mono" data-i="n2_d">15 Jun 2026</time>
+          <a href="#" data-i="n2_t">IPA Bulletin №1/2026 published — network report for the first half-year</a>
+        </div>
+        <div class="news-item">
+          <time class="mono" data-i="n3_d">02 Jun 2026</time>
+          <a href="#" data-i="n3_t">Journal editorial board announces submission window for Vol. 12 No. 2</a>
+        </div>
+      </div>
+      <div class="ne">
+        <h3 data-i="n_h_ev">Upcoming courses · demo</h3>
+        <div class="ev">
+          <div class="d"><b>12</b><span data-i="e1_m">Sep</span></div>
+          <div><h4 data-i="e1_t">eFAST hands-on course</h4><p data-i="e1_p">Požarevac, Serbia · 2 days · English/Serbian</p></div>
+        </div>
+        <div class="ev">
+          <div class="d"><b>03</b><span data-i="e2_m">Oct</span></div>
+          <div><h4 data-i="e2_t">RUSH: shock protocol workshop</h4><p data-i="e2_p">Almaty, Kazakhstan · 1 day</p></div>
+        </div>
+        <div class="ev">
+          <div class="d"><b>24</b><span data-i="e3_m">Oct</span></div>
+          <div><h4 data-i="e3_t">FATE for anaesthesiologists</h4><p data-i="e3_p">Yerevan, Armenia · 2 days</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= CTA ======= -->
+<section id="open" style="padding-top:0">
+  <div class="wrap">
+    <div class="band">
+      <div>
+        <h2 data-i="band_h2">Open an IPA school in your country</h2>
+        <p data-i="band_p">Get the curriculum, the certificate registry and the support of a working international network. One application starts the conversation.</p>
+      </div>
+      <a class="btn btn-pulse" href="#" data-i="band_btn">How it works</a>
+    </div>
+  </div>
+</section>
+
+<!-- ======= FOOTER ======= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h4>International POCUS Academy</h4>
+        <p style="max-width:38ch" data-i="f_desc">A network of national point-of-care ultrasound schools. Training, certification, research.</p>
+      </div>
+      <div>
+        <h4 data-i="f_plat">Platform</h4>
+        <a href="#network" data-i="nav_schools">Schools</a>
+        <a href="#education" data-i="f_l2">Certification</a>
+        <a href="#verify" data-i="hero_cta1">Verify a certificate</a>
+      </div>
+      <div>
+        <h4 data-i="f_pub">Publishing</h4>
+        <a href="#journal">IPA Journal</a>
+        <a href="#news">IPA Bulletin</a>
+        <a href="#knowledge" data-i="nav_kh">Knowledge Hub</a>
+      </div>
+      <div>
+        <h4 data-i="f_contact">Contact</h4>
+        <a href="#">office@ipa — placeholder</a>
+        <a href="#">Facebook</a>
+        <a href="#">YouTube</a>
+      </div>
+    </div>
+    <div class="foot-note">
+      <span>© 2026 International POCUS Academy</span>
+      <span>PROTOTYPE v0.2 · ALL DATA ON THIS PAGE IS SAMPLE DATA</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ================= i18n ================= */
+const I18N = {
+en:{
+  nav_schools:`Schools`, nav_edu:`Education`, nav_journal:`Journal`, nav_kh:`Knowledge Hub`, nav_news:`News & Events`,
+  btn_verify_top:`Verify certificate`,
+  hero_eyebrow:`Global network · founded in Serbia`,
+  hero_h1:`Point-of-care ultrasound, taught — and <em>verified</em> — worldwide.`,
+  hero_lead:`The International POCUS Academy unites national ultrasound schools across three continents: training clinicians, certifying skills to one standard, and letting any hospital verify a certificate in seconds.`,
+  hero_cta1:`Verify a certificate`, hero_cta2:`Explore the schools`,
+  hero_note:`eFAST · RUSH · FATE · BLUE · PROBE — one global standard`,
+  ro1:`certificates issued`, ro2:`countries in the network`, ro3:`national schools &amp; branches`, ro4:`courses held this year`,
+  ro_note:`Prototype: figures shown are placeholders. On the live site these counters read directly from the certificate registry.`,
+  v_kick:`Certificate registry`, v_h2:`Verify a certificate in ten seconds`,
+  v_p:`Every IPA certificate carries a unique number and a QR code. Scan the code — or type the number and the holder's surname — to see its status, level and validity. Try the live demo below.`,
+  v_l1:`Certificate number`, v_l2:`Holder's surname (Latin)`, v_btn:`Check certificate`,
+  v_demo:`Demo data — tap to fill:`,
+  v_empty:`The result card will appear here — with a colour-coded status: <b style="color:#7FE0B0">active</b>, <b style="color:#FFD08A">expiring</b>, <b style="color:#9FB4BD">expired</b> or <b style="color:#FF9C93">revoked</b>. Contact details are never shown.`,
+  v_fail:`<b>Certificate not found.</b> Check the number and surname, or contact the issuing school.`,
+  v_r1:`Certificate no.`, v_r2:`Issued by`, v_r3:`Issued`, v_r4:`Valid until`,
+  st_ok:`ACTIVE`, st_warn:`EXPIRING SOON`, st_off:`EXPIRED`,
+  net_kick:`The network`, net_h2:`National schools on three continents`,
+  net_p:`Each school teaches to the common IPA curriculum, issues certificates into the shared registry, and runs its own page on this platform — courses, reports and faculty.`,
+  c_rs:`Serbia`, c_rs_d:`Founding school · Požarevac`, c_ru:`Russia`, c_ru_d:`Moscow school of POCUS`,
+  c_kz:`Kazakhstan`, c_kg:`Kyrgyzstan`, c_am:`Armenia`, c_tj:`Tajikistan`, c_nat_d:`National POCUS school`,
+  c_ba:`Bosnia &amp; Herzegovina`, c_mk:`North Macedonia`, c_ht:`Haiti`, c_us:`United States`, c_ae:`United Arab Emirates`, c_ng:`Nigeria`, c_rep_d:`Regional branch`,
+  tag_nat:`National school`, tag_rep:`Representative`,
+  join_n:`Your country`, join_d:`Bring the IPA curriculum home.`, join_a:`How to open a school →`,
+  edu_kick:`Education &amp; certification`, edu_h2:`One path, four steps`,
+  edu_p:`From the first protocol course to an academic degree — every step is certified, numbered and verifiable in the registry.`,
+  s1_d:`Protocol courses: eFAST, RUSH, FATE, BLUE, PROBE. Hands-on training at a national school.`,
+  s2_d:`Advanced multi-protocol certification with a practical exam and a logbook of studies.`,
+  s3_d:`Teaching qualification tied to real course activity within the network.`,
+  s4_d:`Academic recognition of published work, courses taught and clinical contribution.`,
+  val5:`valid 5 years`, val3:`valid 3 years`, vlife:`lifetime`,
+  j_kick:`The journal`, j_h2:`Peer-reviewed. Open access. DOI-ready.`,
+  j_p:`The IPA Journal publishes clinical research, protocols and case studies in point-of-care ultrasound twice a year, with an international editorial board drawn from the network's schools. The archive moves to an open-journal platform with ISSN registration and persistent DOIs for every article.`,
+  jf1:`issues per year`, jf2:`registration in progress`, jf3:`per article, planned`, j_btn:`Read the current issue`,
+  k_kick:`Knowledge hub`, k_h2:`Protocols, history and what comes next`,
+  k_p:`A growing open library: step-by-step protocol guides with images and video, the history of POCUS, interventional techniques and AI in ultrasound.`,
+  t1_t:`History of POCUS`, t1_d:`From the first A-mode probes to ultrasound in every pocket — how point-of-care imaging changed acute medicine.`,
+  t2_t:`Interventional POCUS`, t2_d:`Ultrasound-guided vascular access, blocks and drainage: technique pages for anaesthesia and the ICU.`,
+  t3_t:`AI &amp; ultrasound`, t3_d:`Neural networks that read images at the bedside — reviews, tools and honest limitations.`,
+  n_kick:`News &amp; events`, n_h2:`What the network is doing`,
+  n_h_news:`Latest news · demo`, n_h_ev:`Upcoming courses · demo`,
+  n1_d:`28 Jun 2026`, n1_t:`Kazakhstan school reports 120 clinicians certified in eFAST this spring`,
+  n2_d:`15 Jun 2026`, n2_t:`IPA Bulletin №1/2026 published — network report for the first half-year`,
+  n3_d:`02 Jun 2026`, n3_t:`Journal editorial board announces submission window for Vol. 12 No. 2`,
+  e1_m:`Sep`, e1_t:`eFAST hands-on course`, e1_p:`Požarevac, Serbia · 2 days · English/Serbian`,
+  e2_m:`Oct`, e2_t:`RUSH: shock protocol workshop`, e2_p:`Almaty, Kazakhstan · 1 day`,
+  e3_m:`Oct`, e3_t:`FATE for anaesthesiologists`, e3_p:`Yerevan, Armenia · 2 days`,
+  band_h2:`Open an IPA school in your country`,
+  band_p:`Get the curriculum, the certificate registry and the support of a working international network. One application starts the conversation.`,
+  band_btn:`How it works`,
+  f_desc:`A network of national point-of-care ultrasound schools. Training, certification, research.`,
+  f_plat:`Platform`, f_pub:`Publishing`, f_contact:`Contact`, f_l2:`Certification`
+},
+ru:{
+  nav_schools:`Школы`, nav_edu:`Обучение`, nav_journal:`Журнал`, nav_kh:`База знаний`, nav_news:`Новости и события`,
+  btn_verify_top:`Проверить сертификат`,
+  hero_eyebrow:`Глобальная сеть · основана в Сербии`,
+  hero_h1:`Ультразвук у постели пациента: обучение — и <em>верификация</em> — по всему миру.`,
+  hero_lead:`Международная академия POCUS объединяет национальные школы ультразвука на трёх континентах: обучает клиницистов, сертифицирует навыки по единому стандарту и позволяет любой клинике проверить сертификат за секунды.`,
+  hero_cta1:`Проверить сертификат`, hero_cta2:`Школы сети`,
+  hero_note:`eFAST · RUSH · FATE · BLUE · PROBE — единый мировой стандарт`,
+  ro1:`выдано сертификатов`, ro2:`стран в сети`, ro3:`национальных школ и филиалов`, ro4:`курсов в этом году`,
+  ro_note:`Прототип: цифры условные. На живом сайте счётчики читаются напрямую из реестра сертификатов.`,
+  v_kick:`Реестр сертификатов`, v_h2:`Проверьте сертификат за десять секунд`,
+  v_p:`Каждый сертификат IPA имеет уникальный номер и QR-код. Отсканируйте код — или введите номер и фамилию владельца — и увидите статус, уровень и срок действия. Попробуйте демо ниже.`,
+  v_l1:`Номер сертификата`, v_l2:`Фамилия владельца (латиницей)`, v_btn:`Проверить`,
+  v_demo:`Демо-данные — нажмите, чтобы подставить:`,
+  v_empty:`Карточка результата появится здесь — со статусом: <b style="color:#7FE0B0">действует</b>, <b style="color:#FFD08A">истекает</b>, <b style="color:#9FB4BD">истёк</b> или <b style="color:#FF9C93">отозван</b>. Контактные данные никогда не показываются.`,
+  v_fail:`<b>Сертификат не найден.</b> Проверьте номер и фамилию или свяжитесь со школой, выдавшей сертификат.`,
+  v_r1:`Номер сертификата`, v_r2:`Кем выдан`, v_r3:`Дата выдачи`, v_r4:`Действителен до`,
+  st_ok:`ДЕЙСТВУЕТ`, st_warn:`СКОРО ИСТЕКАЕТ`, st_off:`ИСТЁК`,
+  net_kick:`Сеть`, net_h2:`Национальные школы на трёх континентах`,
+  net_p:`Каждая школа преподаёт по единой программе IPA, вносит сертификаты в общий реестр и ведёт свою страницу на платформе — курсы, отчёты, преподаватели.`,
+  c_rs:`Сербия`, c_rs_d:`Школа-основатель · Пожаревац`, c_ru:`Россия`, c_ru_d:`Московская школа POCUS`,
+  c_kz:`Казахстан`, c_kg:`Кыргызстан`, c_am:`Армения`, c_tj:`Таджикистан`, c_nat_d:`Национальная школа POCUS`,
+  c_ba:`Босния и Герцеговина`, c_mk:`Северная Македония`, c_ht:`Гаити`, c_us:`США`, c_ae:`ОАЭ`, c_ng:`Нигерия`, c_rep_d:`Региональный филиал`,
+  tag_nat:`Национальная школа`, tag_rep:`Представительство`,
+  join_n:`Ваша страна`, join_d:`Принесите программу IPA домой.`, join_a:`Как открыть школу →`,
+  edu_kick:`Обучение и сертификация`, edu_h2:`Один путь, четыре ступени`,
+  edu_p:`От первого курса по протоколу до академической степени — каждая ступень сертифицируется, нумеруется и проверяется в реестре.`,
+  s1_d:`Протокольные курсы eFAST, RUSH, FATE, BLUE, PROBE. Практическое обучение в национальной школе.`,
+  s2_d:`Продвинутая мультипротокольная сертификация с практическим экзаменом и логбуком исследований.`,
+  s3_d:`Преподавательская квалификация, привязанная к реальной активности в сети.`,
+  s4_d:`Академическое признание публикаций, преподавания и клинического вклада.`,
+  val5:`действует 5 лет`, val3:`действует 3 года`, vlife:`бессрочно`,
+  j_kick:`Журнал`, j_h2:`Рецензируемый. Открытый доступ. Готов к DOI.`,
+  j_p:`Журнал IPA публикует клинические исследования, протоколы и клинические случаи по POCUS дважды в год; международная редколлегия формируется из школ сети. Архив переезжает на издательскую платформу с регистрацией ISSN и постоянными DOI для каждой статьи.`,
+  jf1:`выпуска в год`, jf2:`регистрация в процессе`, jf3:`для каждой статьи, в планах`, j_btn:`Читать свежий номер`,
+  k_kick:`База знаний`, k_h2:`Протоколы, история и то, что дальше`,
+  k_p:`Растущая открытая библиотека: пошаговые руководства по протоколам с изображениями и видео, история POCUS, интервенционные техники и ИИ в ультразвуке.`,
+  t1_t:`История POCUS`, t1_d:`От первых A-режимных датчиков до УЗИ в каждом кармане — как прикроватная визуализация изменила неотложную медицину.`,
+  t2_t:`Интервенционный POCUS`, t2_d:`Сосудистый доступ, блокады и дренирование под УЗ-контролем: страницы техник для анестезиологии и ОРИТ.`,
+  t3_t:`ИИ и ультразвук`, t3_d:`Нейросети, читающие изображения у постели пациента — обзоры, инструменты и честные ограничения.`,
+  n_kick:`Новости и события`, n_h2:`Чем живёт сеть`,
+  n_h_news:`Последние новости · демо`, n_h_ev:`Ближайшие курсы · демо`,
+  n1_d:`28.06.2026`, n1_t:`Школа Казахстана: этой весной по eFAST сертифицированы 120 клиницистов`,
+  n2_d:`15.06.2026`, n2_t:`Вышел IPA Bulletin №1/2026 — отчёт сети за первое полугодие`,
+  n3_d:`02.06.2026`, n3_t:`Редколлегия журнала объявила приём статей в Vol. 12 No. 2`,
+  e1_m:`сен`, e1_t:`Практический курс eFAST`, e1_p:`Пожаревац, Сербия · 2 дня · англ./серб.`,
+  e2_m:`окт`, e2_t:`RUSH: воркшоп по протоколу шока`, e2_p:`Алматы, Казахстан · 1 день`,
+  e3_m:`окт`, e3_t:`FATE для анестезиологов`, e3_p:`Ереван, Армения · 2 дня`,
+  band_h2:`Откройте школу IPA в своей стране`,
+  band_p:`Получите программу, реестр сертификатов и поддержку работающей международной сети. Всё начинается с одной заявки.`,
+  band_btn:`Как это работает`,
+  f_desc:`Сеть национальных школ ультразвуковой диагностики point-of-care. Обучение, сертификация, исследования.`,
+  f_plat:`Платформа`, f_pub:`Издания`, f_contact:`Контакты`, f_l2:`Сертификация`
+},
+sr:{
+  nav_schools:`Škole`, nav_edu:`Edukacija`, nav_journal:`Časopis`, nav_kh:`Baza znanja`, nav_news:`Vesti i događaji`,
+  btn_verify_top:`Proveri sertifikat`,
+  hero_eyebrow:`Globalna mreža · osnovana u Srbiji`,
+  hero_h1:`Point-of-care ultrazvuk: obuka — i <em>verifikacija</em> — širom sveta.`,
+  hero_lead:`Internacionalna POCUS akademija okuplja nacionalne škole ultrazvuka na tri kontinenta: obučava kliničare, sertifikuje veštine po jedinstvenom standardu i omogućava svakoj bolnici da proveri sertifikat za nekoliko sekundi.`,
+  hero_cta1:`Proveri sertifikat`, hero_cta2:`Istražite škole`,
+  hero_note:`eFAST · RUSH · FATE · BLUE · PROBE — jedan globalni standard`,
+  ro1:`izdatih sertifikata`, ro2:`zemalja u mreži`, ro3:`nacionalnih škola i ogranaka`, ro4:`kurseva ove godine`,
+  ro_note:`Prototip: prikazane cifre su primeri. Na živom sajtu brojači se čitaju direktno iz registra sertifikata.`,
+  v_kick:`Registar sertifikata`, v_h2:`Proverite sertifikat za deset sekundi`,
+  v_p:`Svaki IPA sertifikat nosi jedinstveni broj i QR kod. Skenirajte kod — ili unesite broj i prezime vlasnika — i vidite status, nivo i rok važenja. Isprobajte demo ispod.`,
+  v_l1:`Broj sertifikata`, v_l2:`Prezime vlasnika (latinicom)`, v_btn:`Proveri`,
+  v_demo:`Demo podaci — dodirnite da popunite:`,
+  v_empty:`Kartica rezultata pojaviće se ovde — sa statusom u boji: <b style="color:#7FE0B0">aktivan</b>, <b style="color:#FFD08A">uskoro ističe</b>, <b style="color:#9FB4BD">istekao</b> ili <b style="color:#FF9C93">povučen</b>. Kontakt podaci se nikada ne prikazuju.`,
+  v_fail:`<b>Sertifikat nije pronađen.</b> Proverite broj i prezime ili kontaktirajte školu koja ga je izdala.`,
+  v_r1:`Broj sertifikata`, v_r2:`Izdala`, v_r3:`Datum izdavanja`, v_r4:`Važi do`,
+  st_ok:`AKTIVAN`, st_warn:`USKORO ISTIČE`, st_off:`ISTEKAO`,
+  net_kick:`Mreža`, net_h2:`Nacionalne škole na tri kontinenta`,
+  net_p:`Svaka škola predaje po jedinstvenom IPA programu, upisuje sertifikate u zajednički registar i vodi svoju stranicu na platformi — kursevi, izveštaji, predavači.`,
+  c_rs:`Srbija`, c_rs_d:`Osnivačka škola · Požarevac`, c_ru:`Rusija`, c_ru_d:`Moskovska POCUS škola`,
+  c_kz:`Kazahstan`, c_kg:`Kirgistan`, c_am:`Jermenija`, c_tj:`Tadžikistan`, c_nat_d:`Nacionalna POCUS škola`,
+  c_ba:`Bosna i Hercegovina`, c_mk:`Severna Makedonija`, c_ht:`Haiti`, c_us:`SAD`, c_ae:`Ujedinjeni Arapski Emirati`, c_ng:`Nigerija`, c_rep_d:`Regionalni ogranak`,
+  tag_nat:`Nacionalna škola`, tag_rep:`Predstavništvo`,
+  join_n:`Vaša zemlja`, join_d:`Donesite IPA program u svoju zemlju.`, join_a:`Kako otvoriti školu →`,
+  edu_kick:`Edukacija i sertifikacija`, edu_h2:`Jedan put, četiri koraka`,
+  edu_p:`Od prvog kursa protokola do akademskog zvanja — svaki korak je sertifikovan, numerisan i proverljiv u registru.`,
+  s1_d:`Kursevi protokola eFAST, RUSH, FATE, BLUE, PROBE. Praktična obuka u nacionalnoj školi.`,
+  s2_d:`Napredna multiprotokolska sertifikacija sa praktičnim ispitom i dnevnikom pregleda.`,
+  s3_d:`Nastavna kvalifikacija vezana za stvarnu aktivnost u mreži.`,
+  s4_d:`Akademsko priznanje publikacija, nastave i kliničkog doprinosa.`,
+  val5:`važi 5 godina`, val3:`važi 3 godine`, vlife:`doživotno`,
+  j_kick:`Časopis`, j_h2:`Recenziran. Otvoren pristup. Spreman za DOI.`,
+  j_p:`IPA časopis objavljuje klinička istraživanja, protokole i prikaze slučajeva iz POCUS-a dva puta godišnje; međunarodni urednički odbor čine škole mreže. Arhiva prelazi na izdavačku platformu sa ISSN registracijom i trajnim DOI brojevima za svaki članak.`,
+  jf1:`broja godišnje`, jf2:`registracija u toku`, jf3:`za svaki članak, planirano`, j_btn:`Pročitajte aktuelni broj`,
+  k_kick:`Baza znanja`, k_h2:`Protokoli, istorija i ono što sledi`,
+  k_p:`Rastuća otvorena biblioteka: vodiči kroz protokole korak po korak, sa slikama i videom, istorija POCUS-a, intervencijske tehnike i veštačka inteligencija u ultrazvuku.`,
+  t1_t:`Istorija POCUS-a`, t1_d:`Od prvih A-mod sondi do ultrazvuka u svakom džepu — kako je snimanje uz postelju promenilo urgentnu medicinu.`,
+  t2_t:`Intervencijski POCUS`, t2_d:`Vaskularni pristup, blokovi i drenaže pod kontrolom ultrazvuka: tehnike za anesteziju i intenzivnu negu.`,
+  t3_t:`VI i ultrazvuk`, t3_d:`Neuronske mreže koje čitaju slike uz postelju bolesnika — pregledi, alati i pošteno o ograničenjima.`,
+  n_kick:`Vesti i događaji`, n_h2:`Šta mreža radi`,
+  n_h_news:`Najnovije vesti · demo`, n_h_ev:`Predstojeći kursevi · demo`,
+  n1_d:`28.06.2026.`, n1_t:`Škola u Kazahstanu: ovog proleća 120 kliničara sertifikovano za eFAST`,
+  n2_d:`15.06.2026.`, n2_t:`Objavljen IPA Bulletin br. 1/2026 — izveštaj mreže za prvo polugođe`,
+  n3_d:`02.06.2026.`, n3_t:`Urednički odbor otvara prijem radova za Vol. 12 No. 2`,
+  e1_m:`sep`, e1_t:`Praktični kurs eFAST`, e1_p:`Požarevac, Srbija · 2 dana · engleski/srpski`,
+  e2_m:`okt`, e2_t:`RUSH: radionica protokola šoka`, e2_p:`Almati, Kazahstan · 1 dan`,
+  e3_m:`okt`, e3_t:`FATE za anesteziologe`, e3_p:`Jerevan, Jermenija · 2 dana`,
+  band_h2:`Otvorite IPA školu u svojoj zemlji`,
+  band_p:`Dobijate program, registar sertifikata i podršku aktivne međunarodne mreže. Sve počinje jednom prijavom.`,
+  band_btn:`Kako funkcioniše`,
+  f_desc:`Mreža nacionalnih škola point-of-care ultrazvuka. Obuka, sertifikacija, istraživanje.`,
+  f_plat:`Platforma`, f_pub:`Izdavaštvo`, f_contact:`Kontakt`, f_l2:`Sertifikacija`
+}
+};
+
+let LANG='en';
+function setLang(l){
+  LANG=l;
+  document.documentElement.lang=l;
+  document.querySelectorAll('[data-i]').forEach(el=>{
+    const v=I18N[l][el.dataset.i];
+    if(v!==undefined) el.innerHTML=v;
+  });
+  document.querySelectorAll('.lang button').forEach(b=>{
+    b.setAttribute('aria-pressed', b.dataset.lang===l ? 'true' : 'false');
+  });
+  if(lastHit) renderCard(lastHit);
+}
+
+/* ---- mobile nav ---- */
+function toggleNav(btn){
+  const nav=document.getElementById('mainNav');
+  const open=nav.classList.toggle('open');
+  btn.setAttribute('aria-expanded',open);
+}
+
+/* ---- animated counters ---- */
+const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const counters=document.querySelectorAll('.count');
+const fmt=n=>n.toLocaleString('en-US').replace(/,/g,'\u2009');
+if(reduce){counters.forEach(c=>c.textContent=fmt(+c.dataset.to));}
+else{
+  const io=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(!e.isIntersecting)return;
+      io.unobserve(e.target);
+      const to=+e.target.dataset.to,t0=performance.now(),dur=1400;
+      const tick=t=>{
+        const p=Math.min((t-t0)/dur,1);
+        e.target.textContent=fmt(Math.round(to*(1-Math.pow(1-p,3))));
+        if(p<1)requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    });
+  },{threshold:.5});
+  counters.forEach(c=>io.observe(c));
+}
+
+/* ---- verify demo ---- */
+const DB=[
+  {num:'IPA-RS-2026-SP-0042',sur:['petrovic','petrović'],name:'Dr Milica Petrović',type:'POCUS Specialist',
+   school:{en:'IPA Serbia · Požarevac (RS)',ru:'IPA Сербия · Пожаревац (RS)',sr:'IPA Srbija · Požarevac (RS)'},
+   issued:{en:'12 Mar 2026',ru:'12.03.2026',sr:'12.03.2026.'},
+   valid:{en:'12 Mar 2031',ru:'12.03.2031',sr:'12.03.2031.'},
+   stKey:'st_ok',cls:'ok'},
+  {num:'IPA-KZ-2024-EF-0118',sur:['akhmetov'],name:'Dr Daniyar Akhmetov',type:'POCUS Practitioner · eFAST',
+   school:{en:'IPA Kazakhstan · Almaty (KZ)',ru:'IPA Казахстан · Алматы (KZ)',sr:'IPA Kazahstan · Almati (KZ)'},
+   issued:{en:'10 Oct 2021',ru:'10.10.2021',sr:'10.10.2021.'},
+   valid:{en:'10 Oct 2026',ru:'10.10.2026',sr:'10.10.2026.'},
+   stKey:'st_warn',cls:'warn'},
+  {num:'IPA-RU-2019-RU-0007',sur:['ivanova'],name:'Dr Elena Ivanova',type:'POCUS Practitioner · RUSH',
+   school:{en:'IPA Russia · Moscow (RU)',ru:'IPA Россия · Москва (RU)',sr:'IPA Rusija · Moskva (RU)'},
+   issued:{en:'18 May 2019',ru:'18.05.2019',sr:'18.05.2019.'},
+   valid:{en:'18 May 2024',ru:'18.05.2024',sr:'18.05.2024.'},
+   stKey:'st_off',cls:'off'}
+];
+let lastHit=null;
+
+function fillDemo(i){
+  document.getElementById('vnum').value=DB[i].num;
+  document.getElementById('vsur').value=DB[i].name.split(' ').pop();
+  document.getElementById('vsur').focus();
+}
+function renderCard(hit){
+  const b=document.getElementById('cBadge');
+  b.className='badge '+hit.cls;
+  document.getElementById('cStatus').textContent=I18N[LANG][hit.stKey];
+  document.getElementById('cName').textContent=hit.name;
+  document.getElementById('cType').textContent=hit.type;
+  document.getElementById('cNum').textContent=hit.num;
+  document.getElementById('cSchool').textContent=hit.school[LANG];
+  document.getElementById('cIssued').textContent=hit.issued[LANG];
+  document.getElementById('cValid').textContent=hit.valid[LANG];
+  document.getElementById('vCard').classList.add('show');
+}
+function doVerify(e){
+  e.preventDefault();
+  const num=document.getElementById('vnum').value.trim().toUpperCase();
+  const sur=document.getElementById('vsur').value.trim().toLowerCase();
+  const hit=DB.find(r=>r.num===num&&r.sur.includes(sur));
+  const card=document.getElementById('vCard'),fail=document.getElementById('vFail'),empty=document.getElementById('vEmpty');
+  empty.style.display='none';
+  if(!hit){lastHit=null;card.classList.remove('show');fail.classList.add('show');return false;}
+  fail.classList.remove('show');
+  lastHit=hit;
+  renderCard(hit);
+  return false;
+}
+</script>
+</body>
+</html>
