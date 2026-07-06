@@ -1,0 +1,31 @@
+{
+  "items": [
+    {
+      "date": "2026-09-12",
+      "title_en": "eFAST hands-on course",
+      "title_ru": "Практический курс eFAST",
+      "title_sr": "Praktični kurs eFAST",
+      "details_en": "Požarevac, Serbia · 2 days · English/Serbian",
+      "details_ru": "Пожаревац, Сербия · 2 дня · англ./серб.",
+      "details_sr": "Požarevac, Srbija · 2 dana · engleski/srpski"
+    },
+    {
+      "date": "2026-10-03",
+      "title_en": "RUSH: shock protocol workshop",
+      "title_ru": "RUSH: воркшоп по протоколу шока",
+      "title_sr": "RUSH: radionica protokola šoka",
+      "details_en": "Almaty, Kazakhstan · 1 day",
+      "details_ru": "Алматы, Казахстан · 1 день",
+      "details_sr": "Almati, Kazahstan · 1 dan"
+    },
+    {
+      "date": "2026-10-24",
+      "title_en": "FATE for anaesthesiologists",
+      "title_ru": "FATE для анестезиологов",
+      "title_sr": "FATE za anesteziologe",
+      "details_en": "Yerevan, Armenia · 2 days",
+      "details_ru": "Ереван, Армения · 2 дня",
+      "details_sr": "Jerevan, Jermenija · 2 dana"
+    }
+  ]
+}

@@ -1,5 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+<!--
+================================================================
+ INTERNATIONAL POCUS ACADEMY — главная страница (index.html)
+ ================================================================
+ КАРТА ФАЙЛА — ищите эти метки через поиск (Ctrl+F или «Найти»):
+
+   <style>             оформление: цвета, шрифты, отступы
+   ======= HEADER      шапка: меню, кнопка Verify, языки
+   ======= HERO        первый экран с «экраном УЗИ»
+   ======= READOUTS    счётчики (цифры — в data-to="...")
+   ======= NETWORK     сетка стран и школ
+   ======= EDUCATION   4 ступени сертификации
+   ======= JOURNAL     журнал
+   ======= KNOWLEDGE   база знаний
+   ======= NEWS        новости и события
+   ======= FOOTER      подвал
+   const I18N          ВСЕ ТЕКСТЫ сайта на 3 языках (en / ru / sr)
+   НОВОСТИ И СОБЫТИЯ живут в файлах news.json и events.json —
+   их редактирует панель управления (Pages CMS), код не трогаем
+
+ ПРАВИЛА БЕЗОПАСНОГО РЕДАКТИРОВАНИЯ:
+ 1. Тексты правьте в словаре I18N (внизу файла), в трёх
+    блоках сразу: en, ru и sr — иначе языки разъедутся.
+ 2. Меняйте только слова МЕЖДУ обратными кавычками `...`.
+ 3. Не удаляйте кавычки, запятые, скобки и теги <...>.
+ 4. Файл должен называться строго index.html — не переименовывать.
+ 5. Сомневаетесь — опишите задачу Claude и получите готовый файл.
+ 6. Сломалось? Не страшно: GitHub хранит историю всех версий,
+    любую правку можно откатить.
+================================================================
+-->
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -145,10 +176,6 @@ h2{font-family:'IBM Plex Serif',serif;font-weight:600;font-size:clamp(24px,3.2vw
 .sec-head p{color:var(--muted)}
 
 /* ---------- verify ---------- */
-#verify{background:linear-gradient(180deg,var(--ink),var(--panel-2));color:#E5EFF3}
-#verify .kicker{color:var(--pulse)}
-#verify h2{color:#F4FAFC}
-#verify .sec-head p{color:#A9C0CA}
 .verify-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}
 .vform{
   background:rgba(9,20,28,.55);border:1px solid rgba(127,160,172,.25);border-radius:var(--radius);
@@ -314,7 +341,7 @@ footer a:hover{color:var(--pulse)}
         <circle cx="17" cy="22" r="2.4" fill="#0B1720"/>
       </svg>
       <span class="brand-name">International<br>POCUS Academy</span>
-      <span class="ver mono">v0.2</span>
+      <span class="ver mono">v0.4</span>
     </a>
 
     <button class="burger" aria-label="Menu" aria-expanded="false" onclick="toggleNav(this)">
@@ -335,7 +362,7 @@ footer a:hover{color:var(--pulse)}
         <button data-lang="ru" aria-pressed="false" onclick="setLang('ru')">RU</button>
         <button data-lang="sr" aria-pressed="false" onclick="setLang('sr')">SR</button>
       </div>
-      <a class="btn btn-teal" href="#verify" data-i="btn_verify_top">Verify certificate</a>
+      <a class="btn btn-teal" href="#education" data-i="btn_verify_top">Find a course</a>
     </div>
   </div>
 </header>
@@ -345,10 +372,10 @@ footer a:hover{color:var(--pulse)}
   <div class="wrap hero-in">
     <div>
       <div class="eyebrow" data-i="hero_eyebrow">Global network · founded in Serbia</div>
-      <h1 data-i="hero_h1">Point-of-care ultrasound, taught — and <em>verified</em> — worldwide.</h1>
-      <p class="lead" data-i="hero_lead">The International POCUS Academy unites national ultrasound schools across three continents: training clinicians, certifying skills to one standard, and letting any hospital verify a certificate in seconds.</p>
+      <h1 data-i="hero_h1">Point-of-care ultrasound, taught to <em>one standard</em> — worldwide.</h1>
+      <p class="lead" data-i="hero_lead">The International POCUS Academy unites national ultrasound schools around the world: training clinicians and certifying skills to one common standard.</p>
       <div class="hero-cta">
-        <a class="btn btn-pulse" href="#verify" data-i="hero_cta1">Verify a certificate</a>
+        <a class="btn btn-pulse" href="#education" data-i="hero_cta1">Find a course</a>
         <a class="btn btn-ghost" href="#network" data-i="hero_cta2">Explore the schools</a>
       </div>
       <div class="hero-note" data-i="hero_note">eFAST · RUSH · FATE · BLUE · PROBE — one global standard</div>
@@ -413,9 +440,10 @@ footer a:hover{color:var(--pulse)}
 </section>
 
 <!-- ======= READOUTS ======= -->
+<!-- Счётчики: чтобы изменить цифру, поменяйте число в data-to="..." в нужной строке ниже -->
 <div class="readouts">
   <div class="wrap readouts-in">
-    <div class="ro"><b class="count" data-to="1240">0</b><span data-i="ro1">certificates issued</span></div>
+    <div class="ro"><b class="count" data-to="1240">0</b><span data-i="ro1">clinicians trained</span></div>
     <div class="ro"><b class="count" data-to="12">0</b><span data-i="ro2">countries in the network</span></div>
     <div class="ro"><b class="count" data-to="14">0</b><span data-i="ro3">national schools &amp; branches</span></div>
     <div class="ro"><b class="count" data-to="38">0</b><span data-i="ro4">courses held this year</span></div>
@@ -423,64 +451,17 @@ footer a:hover{color:var(--pulse)}
   </div>
 </div>
 
-<!-- ======= VERIFY ======= -->
-<section id="verify">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="kicker" data-i="v_kick">Certificate registry</div>
-      <h2 data-i="v_h2">Verify a certificate in ten seconds</h2>
-      <p data-i="v_p">Every IPA certificate carries a unique number and a QR code. Scan the code — or type the number and the holder's surname — to see its status, level and validity. Try the live demo below.</p>
-    </div>
-
-    <div class="verify-grid">
-      <form class="vform" onsubmit="return doVerify(event)">
-        <label for="vnum" data-i="v_l1">Certificate number</label>
-        <input id="vnum" class="mono" placeholder="IPA-RS-2026-SP-0042" autocomplete="off">
-        <label for="vsur" data-i="v_l2">Holder's surname (Latin)</label>
-        <input id="vsur" placeholder="Petrović" autocomplete="off">
-        <button class="btn btn-pulse" type="submit" data-i="v_btn">Check certificate</button>
-        <div class="demo-chips">
-          <span data-i="v_demo">Demo data — tap to fill:</span>
-          <br>
-          <button type="button" onclick="fillDemo(0)">IPA-RS-2026-SP-0042 · Petrović</button>
-          <button type="button" onclick="fillDemo(1)">IPA-KZ-2024-EF-0118 · Akhmetov</button>
-          <button type="button" onclick="fillDemo(2)">IPA-RU-2019-RU-0007 · Ivanova</button>
-        </div>
-      </form>
-
-      <div class="vresult" aria-live="polite">
-        <div class="vempty" id="vEmpty" data-i="v_empty">
-          The result card will appear here — with a colour-coded status: <b style="color:#7FE0B0">active</b>, <b style="color:#FFD08A">expiring</b>, <b style="color:#9FB4BD">expired</b> or <b style="color:#FF9C93">revoked</b>. Contact details are never shown.
-        </div>
-        <div class="vfail" id="vFail" data-i="v_fail">
-          <b>Certificate not found.</b> Check the number and surname, or contact the issuing school.
-        </div>
-        <article class="vcard" id="vCard">
-          <span class="badge" id="cBadge"><i></i><span id="cStatus"></span></span>
-          <h3 id="cName"></h3>
-          <div class="vtype" id="cType"></div>
-          <div class="vrows">
-            <div class="vrow"><b data-i="v_r1">Certificate no.</b><span id="cNum"></span></div>
-            <div class="vrow"><b data-i="v_r2">Issued by</b><span id="cSchool"></span></div>
-            <div class="vrow"><b data-i="v_r3">Issued</b><span id="cIssued"></span></div>
-            <div class="vrow"><b data-i="v_r4">Valid until</b><span id="cValid"></span></div>
-          </div>
-        </article>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ======= NETWORK ======= -->
 <section id="network">
   <div class="wrap">
     <div class="sec-head">
       <div class="kicker" data-i="net_kick">The network</div>
-      <h2 data-i="net_h2">National schools on three continents</h2>
+      <h2 data-i="net_h2">National schools around the world</h2>
       <p data-i="net_p">Each school teaches to the common IPA curriculum, issues certificates into the shared registry, and runs its own page on this platform — courses, reports and faculty.</p>
     </div>
     <div class="grid-schools">
-      <a class="school" href="#"><span class="cc mono">RS</span><h3 data-i="c_rs">Serbia</h3><p data-i="c_rs_d">Founding school · Požarevac</p><span class="tag nat" data-i="tag_nat">National school</span></a>
+      <a class="school" href="#"><span class="cc mono">RS</span><h3 data-i="c_rs">Serbia</h3><p data-i="c_rs_d">POCUS Academy of Serbia · founding school</p><span class="tag nat" data-i="tag_nat">National school</span></a>
       <a class="school" href="#"><span class="cc mono">RU</span><h3 data-i="c_ru">Russia</h3><p data-i="c_ru_d">Moscow school of POCUS</p><span class="tag nat" data-i="tag_nat">National school</span></a>
       <a class="school" href="#"><span class="cc mono">KZ</span><h3 data-i="c_kz">Kazakhstan</h3><p data-i="c_nat_d">National POCUS school</p><span class="tag nat" data-i="tag_nat">National school</span></a>
       <a class="school" href="#"><span class="cc mono">KG</span><h3 data-i="c_kg">Kyrgyzstan</h3><p data-i="c_nat_d">National POCUS school</p><span class="tag nat" data-i="tag_nat">National school</span></a>
@@ -594,34 +575,12 @@ footer a:hover{color:var(--pulse)}
     </div>
     <div class="ne-grid">
       <div class="ne">
-        <h3 data-i="n_h_news">Latest news · demo</h3>
-        <div class="news-item">
-          <time class="mono" data-i="n1_d">28 Jun 2026</time>
-          <a href="#" data-i="n1_t">Kazakhstan school reports 120 clinicians certified in eFAST this spring</a>
-        </div>
-        <div class="news-item">
-          <time class="mono" data-i="n2_d">15 Jun 2026</time>
-          <a href="#" data-i="n2_t">IPA Bulletin №1/2026 published — network report for the first half-year</a>
-        </div>
-        <div class="news-item">
-          <time class="mono" data-i="n3_d">02 Jun 2026</time>
-          <a href="#" data-i="n3_t">Journal editorial board announces submission window for Vol. 12 No. 2</a>
-        </div>
+        <h3 data-i="n_h_news">Latest news</h3>
+        <div id="newsList"></div>
       </div>
       <div class="ne">
-        <h3 data-i="n_h_ev">Upcoming courses · demo</h3>
-        <div class="ev">
-          <div class="d"><b>12</b><span data-i="e1_m">Sep</span></div>
-          <div><h4 data-i="e1_t">eFAST hands-on course</h4><p data-i="e1_p">Požarevac, Serbia · 2 days · English/Serbian</p></div>
-        </div>
-        <div class="ev">
-          <div class="d"><b>03</b><span data-i="e2_m">Oct</span></div>
-          <div><h4 data-i="e2_t">RUSH: shock protocol workshop</h4><p data-i="e2_p">Almaty, Kazakhstan · 1 day</p></div>
-        </div>
-        <div class="ev">
-          <div class="d"><b>24</b><span data-i="e3_m">Oct</span></div>
-          <div><h4 data-i="e3_t">FATE for anaesthesiologists</h4><p data-i="e3_p">Yerevan, Armenia · 2 days</p></div>
-        </div>
+        <h3 data-i="n_h_ev">Upcoming courses</h3>
+        <div id="evList"></div>
       </div>
     </div>
   </div>
@@ -652,7 +611,7 @@ footer a:hover{color:var(--pulse)}
         <h4 data-i="f_plat">Platform</h4>
         <a href="#network" data-i="nav_schools">Schools</a>
         <a href="#education" data-i="f_l2">Certification</a>
-        <a href="#verify" data-i="hero_cta1">Verify a certificate</a>
+        <a href="#education" data-i="hero_cta1">Find a course</a>
       </div>
       <div>
         <h4 data-i="f_pub">Publishing</h4>
@@ -669,23 +628,29 @@ footer a:hover{color:var(--pulse)}
     </div>
     <div class="foot-note">
       <span>© 2026 International POCUS Academy</span>
-      <span>PROTOTYPE v0.2 · ALL DATA ON THIS PAGE IS SAMPLE DATA</span>
+      <span>PROTOTYPE v0.4 · ALL DATA ON THIS PAGE IS SAMPLE DATA</span>
     </div>
   </div>
 </footer>
 
 <script>
-/* ================= i18n ================= */
+/* ============================================================
+   СЛОВАРЬ ТЕКСТОВ САЙТА — ТРИ ЯЗЫКА
+   Каждая фраза записана трижды: в блоке en: {...} — английский,
+   ru: {...} — русский, sr: {...} — сербский.
+   Правьте только текст между обратными кавычками `...`.
+   Одну и ту же фразу меняйте во всех трёх блоках.
+   ============================================================ */
 const I18N = {
 en:{
   nav_schools:`Schools`, nav_edu:`Education`, nav_journal:`Journal`, nav_kh:`Knowledge Hub`, nav_news:`News & Events`,
-  btn_verify_top:`Verify certificate`,
+  btn_verify_top:`Find a course`,
   hero_eyebrow:`Global network · founded in Serbia`,
-  hero_h1:`Point-of-care ultrasound, taught — and <em>verified</em> — worldwide.`,
-  hero_lead:`The International POCUS Academy unites national ultrasound schools across three continents: training clinicians, certifying skills to one standard, and letting any hospital verify a certificate in seconds.`,
-  hero_cta1:`Verify a certificate`, hero_cta2:`Explore the schools`,
+  hero_h1:`Point-of-care ultrasound, taught to <em>one standard</em> — worldwide.`,
+  hero_lead:`The International POCUS Academy unites national ultrasound schools around the world: training clinicians and certifying skills to one common standard.`,
+  hero_cta1:`Find a course`, hero_cta2:`Explore the schools`,
   hero_note:`eFAST · RUSH · FATE · BLUE · PROBE — one global standard`,
-  ro1:`certificates issued`, ro2:`countries in the network`, ro3:`national schools &amp; branches`, ro4:`courses held this year`,
+  ro1:`clinicians trained`, ro2:`countries in the network`, ro3:`national schools &amp; branches`, ro4:`courses held this year`,
   ro_note:`Prototype: figures shown are placeholders. On the live site these counters read directly from the certificate registry.`,
   v_kick:`Certificate registry`, v_h2:`Verify a certificate in ten seconds`,
   v_p:`Every IPA certificate carries a unique number and a QR code. Scan the code — or type the number and the holder's surname — to see its status, level and validity. Try the live demo below.`,
@@ -695,9 +660,9 @@ en:{
   v_fail:`<b>Certificate not found.</b> Check the number and surname, or contact the issuing school.`,
   v_r1:`Certificate no.`, v_r2:`Issued by`, v_r3:`Issued`, v_r4:`Valid until`,
   st_ok:`ACTIVE`, st_warn:`EXPIRING SOON`, st_off:`EXPIRED`,
-  net_kick:`The network`, net_h2:`National schools on three continents`,
+  net_kick:`The network`, net_h2:`National schools around the world`,
   net_p:`Each school teaches to the common IPA curriculum, issues certificates into the shared registry, and runs its own page on this platform — courses, reports and faculty.`,
-  c_rs:`Serbia`, c_rs_d:`Founding school · Požarevac`, c_ru:`Russia`, c_ru_d:`Moscow school of POCUS`,
+  c_rs:`Serbia`, c_rs_d:`POCUS Academy of Serbia · founding school`, c_ru:`Russia`, c_ru_d:`Moscow school of POCUS`,
   c_kz:`Kazakhstan`, c_kg:`Kyrgyzstan`, c_am:`Armenia`, c_tj:`Tajikistan`, c_nat_d:`National POCUS school`,
   c_ba:`Bosnia &amp; Herzegovina`, c_mk:`North Macedonia`, c_ht:`Haiti`, c_us:`United States`, c_ae:`United Arab Emirates`, c_ng:`Nigeria`, c_rep_d:`Regional branch`,
   tag_nat:`National school`, tag_rep:`Representative`,
@@ -718,7 +683,7 @@ en:{
   t2_t:`Interventional POCUS`, t2_d:`Ultrasound-guided vascular access, blocks and drainage: technique pages for anaesthesia and the ICU.`,
   t3_t:`AI &amp; ultrasound`, t3_d:`Neural networks that read images at the bedside — reviews, tools and honest limitations.`,
   n_kick:`News &amp; events`, n_h2:`What the network is doing`,
-  n_h_news:`Latest news · demo`, n_h_ev:`Upcoming courses · demo`,
+  n_h_news:`Latest news`, n_h_ev:`Upcoming courses`,
   n1_d:`28 Jun 2026`, n1_t:`Kazakhstan school reports 120 clinicians certified in eFAST this spring`,
   n2_d:`15 Jun 2026`, n2_t:`IPA Bulletin №1/2026 published — network report for the first half-year`,
   n3_d:`02 Jun 2026`, n3_t:`Journal editorial board announces submission window for Vol. 12 No. 2`,
@@ -733,13 +698,13 @@ en:{
 },
 ru:{
   nav_schools:`Школы`, nav_edu:`Обучение`, nav_journal:`Журнал`, nav_kh:`База знаний`, nav_news:`Новости и события`,
-  btn_verify_top:`Проверить сертификат`,
+  btn_verify_top:`Найти курс`,
   hero_eyebrow:`Глобальная сеть · основана в Сербии`,
-  hero_h1:`Ультразвук у постели пациента: обучение — и <em>верификация</em> — по всему миру.`,
-  hero_lead:`Международная академия POCUS объединяет национальные школы ультразвука на трёх континентах: обучает клиницистов, сертифицирует навыки по единому стандарту и позволяет любой клинике проверить сертификат за секунды.`,
-  hero_cta1:`Проверить сертификат`, hero_cta2:`Школы сети`,
+  hero_h1:`Ультразвук у постели пациента: обучение по <em>единому стандарту</em> — по всему миру.`,
+  hero_lead:`Международная академия POCUS объединяет национальные школы ультразвука по всему миру: обучает клиницистов и сертифицирует навыки по единому стандарту.`,
+  hero_cta1:`Найти курс`, hero_cta2:`Школы сети`,
   hero_note:`eFAST · RUSH · FATE · BLUE · PROBE — единый мировой стандарт`,
-  ro1:`выдано сертификатов`, ro2:`стран в сети`, ro3:`национальных школ и филиалов`, ro4:`курсов в этом году`,
+  ro1:`обученных клиницистов`, ro2:`стран в сети`, ro3:`национальных школ и филиалов`, ro4:`курсов в этом году`,
   ro_note:`Прототип: цифры условные. На живом сайте счётчики читаются напрямую из реестра сертификатов.`,
   v_kick:`Реестр сертификатов`, v_h2:`Проверьте сертификат за десять секунд`,
   v_p:`Каждый сертификат IPA имеет уникальный номер и QR-код. Отсканируйте код — или введите номер и фамилию владельца — и увидите статус, уровень и срок действия. Попробуйте демо ниже.`,
@@ -749,9 +714,9 @@ ru:{
   v_fail:`<b>Сертификат не найден.</b> Проверьте номер и фамилию или свяжитесь со школой, выдавшей сертификат.`,
   v_r1:`Номер сертификата`, v_r2:`Кем выдан`, v_r3:`Дата выдачи`, v_r4:`Действителен до`,
   st_ok:`ДЕЙСТВУЕТ`, st_warn:`СКОРО ИСТЕКАЕТ`, st_off:`ИСТЁК`,
-  net_kick:`Сеть`, net_h2:`Национальные школы на трёх континентах`,
+  net_kick:`Сеть`, net_h2:`Национальные школы по всему миру`,
   net_p:`Каждая школа преподаёт по единой программе IPA, вносит сертификаты в общий реестр и ведёт свою страницу на платформе — курсы, отчёты, преподаватели.`,
-  c_rs:`Сербия`, c_rs_d:`Школа-основатель · Пожаревац`, c_ru:`Россия`, c_ru_d:`Московская школа POCUS`,
+  c_rs:`Сербия`, c_rs_d:`POCUS Academy of Serbia · школа-основатель`, c_ru:`Россия`, c_ru_d:`Московская школа POCUS`,
   c_kz:`Казахстан`, c_kg:`Кыргызстан`, c_am:`Армения`, c_tj:`Таджикистан`, c_nat_d:`Национальная школа POCUS`,
   c_ba:`Босния и Герцеговина`, c_mk:`Северная Македония`, c_ht:`Гаити`, c_us:`США`, c_ae:`ОАЭ`, c_ng:`Нигерия`, c_rep_d:`Региональный филиал`,
   tag_nat:`Национальная школа`, tag_rep:`Представительство`,
@@ -772,7 +737,7 @@ ru:{
   t2_t:`Интервенционный POCUS`, t2_d:`Сосудистый доступ, блокады и дренирование под УЗ-контролем: страницы техник для анестезиологии и ОРИТ.`,
   t3_t:`ИИ и ультразвук`, t3_d:`Нейросети, читающие изображения у постели пациента — обзоры, инструменты и честные ограничения.`,
   n_kick:`Новости и события`, n_h2:`Чем живёт сеть`,
-  n_h_news:`Последние новости · демо`, n_h_ev:`Ближайшие курсы · демо`,
+  n_h_news:`Последние новости`, n_h_ev:`Ближайшие курсы`,
   n1_d:`28.06.2026`, n1_t:`Школа Казахстана: этой весной по eFAST сертифицированы 120 клиницистов`,
   n2_d:`15.06.2026`, n2_t:`Вышел IPA Bulletin №1/2026 — отчёт сети за первое полугодие`,
   n3_d:`02.06.2026`, n3_t:`Редколлегия журнала объявила приём статей в Vol. 12 No. 2`,
@@ -787,13 +752,13 @@ ru:{
 },
 sr:{
   nav_schools:`Škole`, nav_edu:`Edukacija`, nav_journal:`Časopis`, nav_kh:`Baza znanja`, nav_news:`Vesti i događaji`,
-  btn_verify_top:`Proveri sertifikat`,
+  btn_verify_top:`Pronađi kurs`,
   hero_eyebrow:`Globalna mreža · osnovana u Srbiji`,
-  hero_h1:`Point-of-care ultrazvuk: obuka — i <em>verifikacija</em> — širom sveta.`,
-  hero_lead:`Internacionalna POCUS akademija okuplja nacionalne škole ultrazvuka na tri kontinenta: obučava kliničare, sertifikuje veštine po jedinstvenom standardu i omogućava svakoj bolnici da proveri sertifikat za nekoliko sekundi.`,
-  hero_cta1:`Proveri sertifikat`, hero_cta2:`Istražite škole`,
+  hero_h1:`Point-of-care ultrazvuk: obuka po <em>jedinstvenom standardu</em> — širom sveta.`,
+  hero_lead:`Internacionalna POCUS akademija okuplja nacionalne škole ultrazvuka širom sveta: obučava kliničare i sertifikuje veštine po jedinstvenom standardu.`,
+  hero_cta1:`Pronađi kurs`, hero_cta2:`Istražite škole`,
   hero_note:`eFAST · RUSH · FATE · BLUE · PROBE — jedan globalni standard`,
-  ro1:`izdatih sertifikata`, ro2:`zemalja u mreži`, ro3:`nacionalnih škola i ogranaka`, ro4:`kurseva ove godine`,
+  ro1:`obučenih kliničara`, ro2:`zemalja u mreži`, ro3:`nacionalnih škola i ogranaka`, ro4:`kurseva ove godine`,
   ro_note:`Prototip: prikazane cifre su primeri. Na živom sajtu brojači se čitaju direktno iz registra sertifikata.`,
   v_kick:`Registar sertifikata`, v_h2:`Proverite sertifikat za deset sekundi`,
   v_p:`Svaki IPA sertifikat nosi jedinstveni broj i QR kod. Skenirajte kod — ili unesite broj i prezime vlasnika — i vidite status, nivo i rok važenja. Isprobajte demo ispod.`,
@@ -803,9 +768,9 @@ sr:{
   v_fail:`<b>Sertifikat nije pronađen.</b> Proverite broj i prezime ili kontaktirajte školu koja ga je izdala.`,
   v_r1:`Broj sertifikata`, v_r2:`Izdala`, v_r3:`Datum izdavanja`, v_r4:`Važi do`,
   st_ok:`AKTIVAN`, st_warn:`USKORO ISTIČE`, st_off:`ISTEKAO`,
-  net_kick:`Mreža`, net_h2:`Nacionalne škole na tri kontinenta`,
+  net_kick:`Mreža`, net_h2:`Nacionalne škole širom sveta`,
   net_p:`Svaka škola predaje po jedinstvenom IPA programu, upisuje sertifikate u zajednički registar i vodi svoju stranicu na platformi — kursevi, izveštaji, predavači.`,
-  c_rs:`Srbija`, c_rs_d:`Osnivačka škola · Požarevac`, c_ru:`Rusija`, c_ru_d:`Moskovska POCUS škola`,
+  c_rs:`Srbija`, c_rs_d:`POCUS Academy of Serbia · osnivačka škola`, c_ru:`Rusija`, c_ru_d:`Moskovska POCUS škola`,
   c_kz:`Kazahstan`, c_kg:`Kirgistan`, c_am:`Jermenija`, c_tj:`Tadžikistan`, c_nat_d:`Nacionalna POCUS škola`,
   c_ba:`Bosna i Hercegovina`, c_mk:`Severna Makedonija`, c_ht:`Haiti`, c_us:`SAD`, c_ae:`Ujedinjeni Arapski Emirati`, c_ng:`Nigerija`, c_rep_d:`Regionalni ogranak`,
   tag_nat:`Nacionalna škola`, tag_rep:`Predstavništvo`,
@@ -826,7 +791,7 @@ sr:{
   t2_t:`Intervencijski POCUS`, t2_d:`Vaskularni pristup, blokovi i drenaže pod kontrolom ultrazvuka: tehnike za anesteziju i intenzivnu negu.`,
   t3_t:`VI i ultrazvuk`, t3_d:`Neuronske mreže koje čitaju slike uz postelju bolesnika — pregledi, alati i pošteno o ograničenjima.`,
   n_kick:`Vesti i događaji`, n_h2:`Šta mreža radi`,
-  n_h_news:`Najnovije vesti · demo`, n_h_ev:`Predstojeći kursevi · demo`,
+  n_h_news:`Najnovije vesti`, n_h_ev:`Predstojeći kursevi`,
   n1_d:`28.06.2026.`, n1_t:`Škola u Kazahstanu: ovog proleća 120 kliničara sertifikovano za eFAST`,
   n2_d:`15.06.2026.`, n2_t:`Objavljen IPA Bulletin br. 1/2026 — izveštaj mreže za prvo polugođe`,
   n3_d:`02.06.2026.`, n3_t:`Urednički odbor otvara prijem radova za Vol. 12 No. 2`,
@@ -852,7 +817,7 @@ function setLang(l){
   document.querySelectorAll('.lang button').forEach(b=>{
     b.setAttribute('aria-pressed', b.dataset.lang===l ? 'true' : 'false');
   });
-  if(lastHit) renderCard(lastHit);
+  renderDynamic();
 }
 
 /* ---- mobile nav ---- */
@@ -884,56 +849,71 @@ else{
   counters.forEach(c=>io.observe(c));
 }
 
-/* ---- verify demo ---- */
-const DB=[
-  {num:'IPA-RS-2026-SP-0042',sur:['petrovic','petrović'],name:'Dr Milica Petrović',type:'POCUS Specialist',
-   school:{en:'IPA Serbia · Požarevac (RS)',ru:'IPA Сербия · Пожаревац (RS)',sr:'IPA Srbija · Požarevac (RS)'},
-   issued:{en:'12 Mar 2026',ru:'12.03.2026',sr:'12.03.2026.'},
-   valid:{en:'12 Mar 2031',ru:'12.03.2031',sr:'12.03.2031.'},
-   stKey:'st_ok',cls:'ok'},
-  {num:'IPA-KZ-2024-EF-0118',sur:['akhmetov'],name:'Dr Daniyar Akhmetov',type:'POCUS Practitioner · eFAST',
-   school:{en:'IPA Kazakhstan · Almaty (KZ)',ru:'IPA Казахстан · Алматы (KZ)',sr:'IPA Kazahstan · Almati (KZ)'},
-   issued:{en:'10 Oct 2021',ru:'10.10.2021',sr:'10.10.2021.'},
-   valid:{en:'10 Oct 2026',ru:'10.10.2026',sr:'10.10.2026.'},
-   stKey:'st_warn',cls:'warn'},
-  {num:'IPA-RU-2019-RU-0007',sur:['ivanova'],name:'Dr Elena Ivanova',type:'POCUS Practitioner · RUSH',
-   school:{en:'IPA Russia · Moscow (RU)',ru:'IPA Россия · Москва (RU)',sr:'IPA Rusija · Moskva (RU)'},
-   issued:{en:'18 May 2019',ru:'18.05.2019',sr:'18.05.2019.'},
-   valid:{en:'18 May 2024',ru:'18.05.2024',sr:'18.05.2024.'},
-   stKey:'st_off',cls:'off'}
-];
-let lastHit=null;
 
-function fillDemo(i){
-  document.getElementById('vnum').value=DB[i].num;
-  document.getElementById('vsur').value=DB[i].name.split(' ').pop();
-  document.getElementById('vsur').focus();
+/* ===== ДИНАМИЧЕСКИЙ КОНТЕНТ: НОВОСТИ И СОБЫТИЯ ==================
+   Список новостей и событий живёт в файлах news.json и events.json
+   в этом же репозитории. Их правит панель управления (Pages CMS) —
+   этот код трогать не нужно. При локальном просмотре, когда файлы
+   недоступны, показываются встроенные примеры ниже. */
+const MONTHS={
+ en:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+ ru:['янв','фев','мар','апр','май','июн','июл','авг','сен','окт','ноя','дек'],
+ sr:['jan','feb','mar','apr','maj','jun','jul','avg','sep','okt','nov','dec']};
+function fmtD(iso){
+ const d=new Date(iso+'T00:00:00');
+ if(isNaN(d))return iso||'';
+ const dd=String(d.getDate()).padStart(2,'0');
+ if(LANG==='en')return dd+' '+MONTHS.en[d.getMonth()]+' '+d.getFullYear();
+ const s=dd+'.'+String(d.getMonth()+1).padStart(2,'0')+'.'+d.getFullYear();
+ return LANG==='sr'?s+'.':s;
 }
-function renderCard(hit){
-  const b=document.getElementById('cBadge');
-  b.className='badge '+hit.cls;
-  document.getElementById('cStatus').textContent=I18N[LANG][hit.stKey];
-  document.getElementById('cName').textContent=hit.name;
-  document.getElementById('cType').textContent=hit.type;
-  document.getElementById('cNum').textContent=hit.num;
-  document.getElementById('cSchool').textContent=hit.school[LANG];
-  document.getElementById('cIssued').textContent=hit.issued[LANG];
-  document.getElementById('cValid').textContent=hit.valid[LANG];
-  document.getElementById('vCard').classList.add('show');
+let NEWS=[
+ {date:'2026-06-28',title_en:'Kazakhstan school reports 120 clinicians certified in eFAST this spring',title_ru:'Школа Казахстана: этой весной по eFAST сертифицированы 120 клиницистов',title_sr:'Škola u Kazahstanu: ovog proleća 120 kliničara sertifikovano za eFAST',link:''},
+ {date:'2026-06-15',title_en:'IPA Bulletin №1/2026 published — network report for the first half-year',title_ru:'Вышел IPA Bulletin №1/2026 — отчёт сети за первое полугодие',title_sr:'Objavljen IPA Bulletin br. 1/2026 — izveštaj mreže za prvo polugođe',link:''},
+ {date:'2026-06-02',title_en:'Journal editorial board announces submission window for Vol. 12 No. 2',title_ru:'Редколлегия журнала объявила приём статей в Vol. 12 No. 2',title_sr:'Urednički odbor otvara prijem radova za Vol. 12 No. 2',link:''}
+];
+let EVENTS=[
+ {date:'2026-09-12',title_en:'eFAST hands-on course',title_ru:'Практический курс eFAST',title_sr:'Praktični kurs eFAST',details_en:'Požarevac, Serbia · 2 days · English/Serbian',details_ru:'Пожаревац, Сербия · 2 дня · англ./серб.',details_sr:'Požarevac, Srbija · 2 dana · engleski/srpski'},
+ {date:'2026-10-03',title_en:'RUSH: shock protocol workshop',title_ru:'RUSH: воркшоп по протоколу шока',title_sr:'RUSH: radionica protokola šoka',details_en:'Almaty, Kazakhstan · 1 day',details_ru:'Алматы, Казахстан · 1 день',details_sr:'Almati, Kazahstan · 1 dan'},
+ {date:'2026-10-24',title_en:'FATE for anaesthesiologists',title_ru:'FATE для анестезиологов',title_sr:'FATE za anesteziologe',details_en:'Yerevan, Armenia · 2 days',details_ru:'Ереван, Армения · 2 дня',details_sr:'Jerevan, Jermenija · 2 dana'}
+];
+function esc(t){const d=document.createElement('div');d.textContent=t==null?'':String(t);return d.innerHTML;}
+function pick(o,base){return o[base+'_'+LANG]||o[base+'_en']||'';}
+function renderDynamic(){
+ const nl=document.getElementById('newsList');
+ if(nl){
+  const items=[...NEWS].filter(n=>n&&n.date).sort((a,b)=>String(b.date).localeCompare(String(a.date))).slice(0,5);
+  nl.innerHTML=items.map(n=>{
+   const href=n.link?esc(n.link):'#';
+   return '<div class="news-item"><time class="mono">'+fmtD(n.date)+'</time><a href="'+href+'">'+esc(pick(n,'title'))+'</a></div>';
+  }).join('');
+ }
+ const el=document.getElementById('evList');
+ if(el){
+  const today=new Date().toISOString().slice(0,10);
+  let items=[...EVENTS].filter(e=>e&&e.date);
+  const up=items.filter(e=>String(e.date)>=today).sort((a,b)=>String(a.date).localeCompare(String(b.date)));
+  items=(up.length?up:items.sort((a,b)=>String(b.date).localeCompare(String(a.date)))).slice(0,4);
+  el.innerHTML=items.map(e=>{
+   const d=new Date(e.date+'T00:00:00');
+   const day=isNaN(d)?'':String(d.getDate()).padStart(2,'0');
+   const mon=isNaN(d)?'':MONTHS[LANG][d.getMonth()];
+   return '<div class="ev"><div class="d"><b>'+day+'</b><span>'+mon+'</span></div><div><h4>'+esc(pick(e,'title'))+'</h4><p>'+esc(pick(e,'details'))+'</p></div></div>';
+  }).join('');
+ }
 }
-function doVerify(e){
-  e.preventDefault();
-  const num=document.getElementById('vnum').value.trim().toUpperCase();
-  const sur=document.getElementById('vsur').value.trim().toLowerCase();
-  const hit=DB.find(r=>r.num===num&&r.sur.includes(sur));
-  const card=document.getElementById('vCard'),fail=document.getElementById('vFail'),empty=document.getElementById('vEmpty');
-  empty.style.display='none';
-  if(!hit){lastHit=null;card.classList.remove('show');fail.classList.add('show');return false;}
-  fail.classList.remove('show');
-  lastHit=hit;
-  renderCard(hit);
-  return false;
+async function loadJSON(p){
+ try{const r=await fetch(p,{cache:'no-store'});if(!r.ok)throw 0;return await r.json();}
+ catch(err){return null;}
 }
+(async function(){
+ renderDynamic();
+ const n=await loadJSON('news.json');
+ if(n&&Array.isArray(n.items))NEWS=n.items;
+ const e=await loadJSON('events.json');
+ if(e&&Array.isArray(e.items))EVENTS=e.items;
+ renderDynamic();
+})();
 </script>
 </body>
 </html>
