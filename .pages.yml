@@ -1,0 +1,63 @@
+media:
+  input: images
+  output: /images
+
+content:
+  - name: news
+    label: РќРѕРІРѕСЃС‚Рё В· News
+    type: file
+    path: news.json
+    fields:
+      - name: items
+        label: РЎРїРёСЃРѕРє РЅРѕРІРѕСЃС‚РµР№
+        type: object
+        list: true
+        fields:
+          - name: date
+            label: Р”Р°С‚Р° В· Date
+            type: date
+          - name: title_en
+            label: Р—Р°РіРѕР»РѕРІРѕРє В· English
+            type: string
+          - name: title_ru
+            label: Р—Р°РіРѕР»РѕРІРѕРє В· Р СѓСЃСЃРєРёР№
+            type: string
+          - name: title_sr
+            label: Naslov В· Srpski (latinica)
+            type: string
+          - name: link
+            label: РЎСЃС‹Р»РєР° В· Link (РЅРµРѕР±СЏР·Р°С‚РµР»СЊРЅРѕ)
+            type: string
+
+  - name: events
+    label: РЎРѕР±С‹С‚РёСЏ В· Events
+    type: file
+    path: events.json
+    fields:
+      - name: items
+        label: РЎРїРёСЃРѕРє СЃРѕР±С‹С‚РёР№
+        type: object
+        list: true
+        fields:
+          - name: date
+            label: Р”Р°С‚Р° РєСѓСЂСЃР° В· Date
+            type: date
+          - name: title_en
+            label: РќР°Р·РІР°РЅРёРµ В· English
+            type: string
+          - name: title_ru
+            label: РќР°Р·РІР°РЅРёРµ В· Р СѓСЃСЃРєРёР№
+            type: string
+          - name: title_sr
+            label: Naziv В· Srpski (latinica)
+            type: string
+          - name: details_en
+            label: Р“РѕСЂРѕРґ Рё РґРµС‚Р°Р»Рё В· English
+            type: string
+            description: "РќР°РїСЂРёРјРµСЂ: PoЕѕarevac, Serbia В· 2 days"
+          - name: details_ru
+            label: Р“РѕСЂРѕРґ Рё РґРµС‚Р°Р»Рё В· Р СѓСЃСЃРєРёР№
+            type: string
+          - name: details_sr
+            label: Grad i detalji В· Srpski
+            type: string
