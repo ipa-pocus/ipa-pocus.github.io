@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+================================================================
+ СТРАНИЦА ШКОЛЫ: POCUS ACADEMY OF SERBIA (serbia.html)
+ Шаблон для всех страниц национальных школ IPA.
+ Тексты — в словаре I18N внизу файла (en / ru / sr).
+ Фотографии — в папке images/ репозитория.
+ Данные предоставлены Prim. dr Ivica Zdravković, июль 2026.
+================================================================
+-->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POCUS Academy of Serbia — International POCUS Academy</title>
+<meta name="description" content="POCUS Academy of Serbia: founding school of the International POCUS Academy. Courses, faculty, contacts.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root{
+  --ink:#0B1720; --panel:#0E2230; --paper:#F5F8F9; --card:#FFFFFF;
+  --line:#D9E4E9; --echo:#E9F1F4; --teal:#0E7C86; --teal-deep:#0A5A62;
+  --pulse:#F2A93B; --gray:#8CA3AE; --text:#182E3A; --muted:#54707C;
+  --radius:14px; --maxw:1020px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{font-family:'IBM Plex Sans',system-ui,sans-serif;color:var(--text);background:var(--paper);line-height:1.65;font-size:16px}
+img{display:block;max-width:100%}
+a{color:var(--teal-deep)}
+:focus-visible{outline:3px solid var(--pulse);outline-offset:2px;border-radius:4px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+
+/* ---------- header ---------- */
+.top{position:sticky;top:0;z-index:50;background:rgba(245,248,249,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top-in{display:flex;align-items:center;gap:14px;height:60px}
+.back{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink);font-weight:600;font-size:14px}
+.back svg{width:26px;height:26px}
+.lang{margin-left:auto;display:flex;gap:2px;border:1px solid var(--line);border-radius:999px;padding:2px;background:#fff}
+.lang button{border:0;background:transparent;font-family:'IBM Plex Mono',monospace;font-size:11px;padding:5px 9px;border-radius:999px;color:var(--muted);cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink);color:#fff}
+
+/* ---------- hero ---------- */
+.hero{background:radial-gradient(900px 400px at 80% -10%, rgba(14,124,134,.25), transparent 60%),linear-gradient(180deg,var(--panel) 0%,var(--ink) 100%);color:#EAF2F5;padding:56px 0 60px}
+.hero-in{display:flex;gap:28px;align-items:center;flex-wrap:wrap}
+.hero-logo{width:112px;height:112px;flex:0 0 auto;background:#fff;border-radius:50%;padding:6px;box-shadow:0 12px 30px -12px rgba(0,0,0,.5)}
+.crumbs{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--pulse);margin-bottom:12px}
+h1{font-family:'IBM Plex Serif',serif;font-weight:600;font-size:clamp(28px,4.4vw,44px);line-height:1.12;color:#F4FAFC;margin-bottom:12px}
+.hero-sub{color:#B9CDD6;max-width:56ch}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.tag{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;padding:6px 12px;border-radius:999px;border:1px solid rgba(233,241,244,.35);color:#D7E6EC}
+.tag.gold{border-color:var(--pulse);color:var(--pulse)}
+
+/* ---------- sections ---------- */
+section{padding:58px 0}
+.kicker{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-bottom:10px}
+h2{font-family:'IBM Plex Serif',serif;font-weight:600;font-size:clamp(22px,3vw,30px);line-height:1.2;color:var(--ink);margin-bottom:14px}
+.sec p{color:var(--muted);max-width:70ch}
+
+/* ---------- director ---------- */
+#director{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.dir{display:grid;grid-template-columns:260px 1fr;gap:36px;align-items:start}
+.dir-photo{border-radius:var(--radius);overflow:hidden;box-shadow:0 18px 40px -18px rgba(11,23,32,.35);background:var(--echo)}
+.dir h3{font-family:'IBM Plex Serif',serif;font-size:24px;color:var(--ink);font-weight:600;margin-bottom:4px}
+.dir .role{color:var(--teal-deep);font-weight:600;font-size:14.5px;margin-bottom:14px}
+.dir p{color:var(--muted)}
+
+/* ---------- programs ---------- */
+.protocols{display:flex;gap:9px;flex-wrap:wrap;margin:22px 0 26px}
+.proto{font-family:'IBM Plex Mono',monospace;font-size:12.5px;font-weight:500;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 15px}
+.next-ev{display:flex;gap:18px;align-items:center;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--pulse);border-radius:var(--radius);padding:18px 22px;max-width:560px}
+.next-ev .d{flex:0 0 60px;text-align:center;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:9px 4px}
+.next-ev .d b{font-family:'IBM Plex Mono',monospace;font-size:21px;color:var(--ink);display:block;line-height:1}
+.next-ev .d span{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--pulse);text-transform:uppercase;letter-spacing:.1em}
+.next-ev h4{font-size:15px;font-weight:600;color:var(--ink)}
+.next-ev p{font-size:13px;color:var(--muted)}
+
+/* ---------- faculty ---------- */
+#faculty{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.team-photo{border-radius:var(--radius);overflow:hidden;box-shadow:0 18px 40px -18px rgba(11,23,32,.35);margin-bottom:30px;background:var(--echo)}
+.fac-list{columns:2;column-gap:40px;list-style:none;max-width:760px}
+.fac-list li{padding:7px 0;border-bottom:1px solid var(--echo);font-size:14.5px;color:var(--text);break-inside:avoid}
+.fac-list li:first-child{font-weight:600}
+
+/* ---------- gallery ---------- */
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.gal a{display:block;border-radius:12px;overflow:hidden;background:var(--echo);aspect-ratio:4/3}
+.gal img{width:100%;height:100%;object-fit:cover;transition:transform .2s}
+.gal a:hover img{transform:scale(1.03)}
+
+/* ---------- reports ---------- */
+.rep{display:block;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 22px;margin-bottom:12px;text-decoration:none;max-width:560px}
+.rep:hover{border-color:var(--teal)}
+.rep b{display:block;font-family:'IBM Plex Serif',serif;font-size:16.5px;color:var(--ink);font-weight:600}
+.rep span{font-size:12.5px;color:var(--muted)}
+
+/* ---------- contacts ---------- */
+#contacts{background:linear-gradient(180deg,var(--ink),var(--panel));color:#E5EFF3}
+#contacts .kicker{color:var(--pulse)}
+#contacts h2{color:#F4FAFC}
+.con-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:8px}
+.con{background:rgba(9,20,28,.5);border:1px solid rgba(127,160,172,.25);border-radius:var(--radius);padding:20px}
+.con h4{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#8FB0BC;margin-bottom:10px}
+.con a{color:#EAF4F8;text-decoration:none;font-size:14.5px;word-break:break-word}
+.con a:hover{color:var(--pulse)}
+.con p{font-size:13.5px;color:#C6D8DF}
+
+/* ---------- footer ---------- */
+footer{background:var(--ink);color:#5E7C88;padding:26px 0;font-family:'IBM Plex Mono',monospace;font-size:11px;border-top:1px solid rgba(127,160,172,.15)}
+.foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+footer a{color:#9FB4BD;text-decoration:none}
+
+@media (max-width:820px){
+  .dir{grid-template-columns:1fr}
+  .dir-photo{max-width:280px}
+  .gal{grid-template-columns:1fr}
+  .con-grid{grid-template-columns:1fr}
+  .fac-list{columns:1}
+  section{padding:46px 0}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="back" href="index.html">
+      <svg viewBox="0 0 34 34" aria-hidden="true">
+        <path d="M17 3 L31 29 A17 17 0 0 1 3 29 Z" fill="none" stroke="#0E7C86" stroke-width="2.2"/>
+        <path d="M17 3 L24.6 17.2" stroke="#F2A93B" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+      <span data-i="back">← International POCUS Academy</span>
+    </a>
+    <div class="lang" role="group" aria-label="Language">
+      <button data-lang="en" aria-pressed="true" onclick="setLang('en')">EN</button>
+      <button data-lang="ru" aria-pressed="false" onclick="setLang('ru')">RU</button>
+      <button data-lang="sr" aria-pressed="false" onclick="setLang('sr')">SR</button>
+    </div>
+  </div>
+</header>
+
+<!-- ======= HERO ======= -->
+<section class="hero" style="padding-top:56px">
+  <div class="wrap hero-in">
+    <img class="hero-logo" src="images/serbia-logo.gif" alt="POCUS Academy of Serbia — logo">
+    <div>
+      <div class="crumbs" data-i="crumbs">IPA Network · Serbia (RS)</div>
+      <h1>POCUS Academy of Serbia</h1>
+      <p class="hero-sub" data-i="hero_sub">The founding school of the International POCUS Academy. Ultrasound education for physicians across Serbia since 2019.</p>
+      <div class="tags">
+        <span class="tag gold" data-i="tag1">Founding school</span>
+        <span class="tag" data-i="tag2">Požarevac, Serbia</span>
+        <span class="tag" data-i="tag3">20+ instructors</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= ABOUT ======= -->
+<section class="sec" id="about">
+  <div class="wrap">
+    <div class="kicker" data-i="a_kick">About the school</div>
+    <h2 data-i="a_h2">Ten years of ultrasound education in Serbia</h2>
+    <p data-i="a_p">The POCUS Academy of Serbia was officially founded at its constituent assembly in 2023, but has existed informally since 2019 as a continuation of the Serbian Association for Medical Imaging (UMIS), established in 2014 by Prof. Dr Željko Marković. The Academy is registered as a non-profit professional association of physicians dedicated to promoting ultrasound diagnostics and organizing medical education.</p>
+  </div>
+</section>
+
+<!-- ======= DIRECTOR ======= -->
+<section id="director">
+  <div class="wrap">
+    <div class="kicker" data-i="d_kick">Director</div>
+    <div class="dir">
+      <div class="dir-photo"><img src="images/ivica-zdravkovic.jpg" alt="Prim. dr Ivica Zdravković"></div>
+      <div>
+        <h3>Prim. dr Ivica Zdravković</h3>
+        <div class="role" data-i="d_role">Director of the POCUS Academy of Serbia · Associate Professor of the International POCUS Academy</div>
+        <p data-i="d_bio">Born in 1961, he graduated from the Faculty of Medicine, University of Belgrade, in 1995. A specialist in general and family medicine since 2005, he was awarded the title of Primarius in 2014. Practicing echosonography since 2001, he is certified in Serbia, Austria and the USA, and has served as an instructor and lecturer at Serbia's national ultrasound schools since 2018. His work has been recognized by the Serbian Medical Chamber and the American POCUS Certification Academy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= PROGRAMS ======= -->
+<section class="sec" id="programs">
+  <div class="wrap">
+    <div class="kicker" data-i="p_kick">Courses &amp; programs</div>
+    <h2 data-i="p_h2">From core protocols to the complete PROBE program</h2>
+    <p data-i="p_p1">Around twenty Academy instructors provide regular hands-on training of colleagues in healthcare institutions across Serbia. Every May the Academy hosts its flagship annual conference — POCUS Diagnostics Days — along with an autumn–winter workshop in Požarevac.</p>
+    <div class="protocols">
+      <span class="proto">eFAST</span><span class="proto">RUSH</span><span class="proto">BLUE</span><span class="proto">FATE</span><span class="proto">PROBE</span><span class="proto" data-i="pr_abd">Abdomen</span><span class="proto" data-i="pr_thy">Thyroid</span><span class="proto" data-i="pr_br">Breast</span><span class="proto">MSK</span><span class="proto" data-i="pr_heart">Cardiac</span><span class="proto">Doppler</span>
+    </div>
+    <p data-i="p_p2" style="margin-bottom:24px">Training covers the core protocols, focused examinations of individual regions and organs, and the special PROBE program — a complete course in ultrasound diagnostics for physicians in general practice, internal medicine and beyond.</p>
+    <div class="next-ev">
+      <div class="d"><b>12</b><span data-i="ne_m">Dec</span></div>
+      <div>
+        <h4 data-i="ne_t">Next group workshop</h4>
+        <p data-i="ne_p">Požarevac, Serbia · 12 December 2026</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= FACULTY ======= -->
+<section id="faculty">
+  <div class="wrap">
+    <div class="kicker" data-i="f_kick">Faculty</div>
+    <h2 data-i="f_h2">Instructors and educators</h2>
+    <div class="team-photo"><img src="images/serbia-team.jpg" alt="POCUS Academy of Serbia — team"></div>
+    <ul class="fac-list">
+      <li>Prim. dr med. Ivica Zdravković</li>
+      <li>Prim. dr med. sci. Živorad Savić</li>
+      <li>Prim. dr med. Željka Popović</li>
+      <li>Prim. dr med. Danijel Atijas</li>
+      <li>Dr Sava Vojnović</li>
+      <li>Dr Gordana Bojović</li>
+      <li>Dr Kristina Stević</li>
+      <li>Dr Vekoslav Zajić</li>
+      <li>Dr Dejan Živanović</li>
+      <li>Dr Marko Stevanić</li>
+      <li>Dr Milena Milosavljević</li>
+      <li>Dr Danijel Oderković</li>
+      <li>Dr Dijana Manojlović Đurić</li>
+      <li>Dr Suzana Zdravković</li>
+      <li>Dr Nikola Milojević</li>
+      <li>Dr Tijana Raduka</li>
+      <li>Dr Branka Popović</li>
+      <li>Dr Adil Elhag</li>
+      <li>Dr Gorica Đukanović Šakota</li>
+      <li>Dr Nada Pejčić</li>
+      <li>Prim. dr med. Ljiljana Mirkov</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======= GALLERY ======= -->
+<section class="sec" id="gallery">
+  <div class="wrap">
+    <div class="kicker" data-i="g_kick">Gallery</div>
+    <h2 data-i="g_h2">From our courses and workshops</h2>
+    <div class="gal">
+      <a href="images/serbia-course-1.jpg" target="_blank" rel="noopener"><img src="images/serbia-course-1.jpg" alt="POCUS Diagnostics Days" loading="lazy"></a>
+      <a href="images/serbia-course-2.jpg" target="_blank" rel="noopener"><img src="images/serbia-course-2.jpg" alt="Hands-on workshop, December 2025" loading="lazy"></a>
+      <a href="images/serbia-course-3.jpg" target="_blank" rel="noopener"><img src="images/serbia-course-3.jpg" alt="Workshop in Kragujevac" loading="lazy"></a>
+    </div>
+  </div>
+</section>
+
+<!-- ======= REPORTS ======= -->
+<section class="sec" id="reports" style="padding-top:0">
+  <div class="wrap">
+    <div class="kicker" data-i="r_kick">Reports</div>
+    <h2 data-i="r_h2">Highlights from past events</h2>
+    <a class="rep" href="https://www.pocus.edu.rs/serbiaNEWSpage05.htm" target="_blank" rel="noopener">
+      <b data-i="r1_t">POCUS Diagnostics Days 2025</b>
+      <span data-i="r1_s">Annual conference report · pocus.edu.rs</span>
+    </a>
+    <a class="rep" href="https://www.pocus.edu.rs/serbiaNEWSpage08.htm" target="_blank" rel="noopener">
+      <b data-i="r2_t">POCUS Diagnostics Days 2026</b>
+      <span data-i="r2_s">Annual conference report · pocus.edu.rs</span>
+    </a>
+  </div>
+</section>
+
+<!-- ======= CONTACTS ======= -->
+<section id="contacts">
+  <div class="wrap">
+    <div class="kicker" data-i="c_kick">Contacts</div>
+    <h2 data-i="c_h2">Get in touch with the school</h2>
+    <div class="con-grid">
+      <div class="con">
+        <h4>Email</h4>
+        <a href="mailto:ivicaserbia@yahoo.com">ivicaserbia@yahoo.com</a>
+      </div>
+      <div class="con">
+        <h4>Viber · WhatsApp</h4>
+        <a href="tel:+381642692591">+381 64 269 25 91</a>
+        <p style="margin-top:10px"><a href="https://www.facebook.com/POCUSAkademijaSrbije" target="_blank" rel="noopener" data-i="c_fb">POCUS Akademija Srbije on Facebook</a></p>
+      </div>
+      <div class="con">
+        <h4 data-i="c_addr">Address</h4>
+        <p>Spec. ordinacija "ID MEDICA"<br>Ul. Petnaestog oktobra 14/2<br>12000 Požarevac, Serbia</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 POCUS Academy of Serbia · <a href="index.html">International POCUS Academy</a></span>
+    <span>IPA NETWORK · RS</span>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   СЛОВАРЬ ТЕКСТОВ СТРАНИЦЫ — ТРИ ЯЗЫКА (en / ru / sr)
+   Сербский блок — оригинальный текст Ивицы Здравковича.
+   ============================================================ */
+const I18N = {
+en:{
+  back:`← International POCUS Academy`,
+  crumbs:`IPA Network · Serbia (RS)`,
+  hero_sub:`The founding school of the International POCUS Academy. Ultrasound education for physicians across Serbia since 2019.`,
+  tag1:`Founding school`, tag2:`Požarevac, Serbia`, tag3:`20+ instructors`,
+  a_kick:`About the school`, a_h2:`Ten years of ultrasound education in Serbia`,
+  a_p:`The POCUS Academy of Serbia was officially founded at its constituent assembly in 2023, but has existed informally since 2019 as a continuation of the Serbian Association for Medical Imaging (UMIS), established in 2014 by Prof. Dr Željko Marković. The Academy is registered as a non-profit professional association of physicians dedicated to promoting ultrasound diagnostics and organizing medical education.`,
+  d_kick:`Director`,
+  d_role:`Director of the POCUS Academy of Serbia · Associate Professor of the International POCUS Academy`,
+  d_bio:`Born in 1961, he graduated from the Faculty of Medicine, University of Belgrade, in 1995. A specialist in general and family medicine since 2005, he was awarded the title of Primarius in 2014. Practicing echosonography since 2001, he is certified in Serbia, Austria and the USA, and has served as an instructor and lecturer at Serbia's national ultrasound schools since 2018. His work has been recognized by the Serbian Medical Chamber and the American POCUS Certification Academy.`,
+  p_kick:`Courses & programs`, p_h2:`From core protocols to the complete PROBE program`,
+  p_p1:`Around twenty Academy instructors provide regular hands-on training of colleagues in healthcare institutions across Serbia. Every May the Academy hosts its flagship annual conference — POCUS Diagnostics Days — along with an autumn–winter workshop in Požarevac.`,
+  p_p2:`Training covers the core protocols, focused examinations of individual regions and organs, and the special PROBE program — a complete course in ultrasound diagnostics for physicians in general practice, internal medicine and beyond.`,
+  pr_abd:`Abdomen`, pr_thy:`Thyroid`, pr_br:`Breast`, pr_heart:`Cardiac`,
+  ne_m:`Dec`, ne_t:`Next group workshop`, ne_p:`Požarevac, Serbia · 12 December 2026`,
+  f_kick:`Faculty`, f_h2:`Instructors and educators`,
+  g_kick:`Gallery`, g_h2:`From our courses and workshops`,
+  r_kick:`Reports`, r_h2:`Highlights from past events`,
+  r1_t:`POCUS Diagnostics Days 2025`, r1_s:`Annual conference report · pocus.edu.rs`,
+  r2_t:`POCUS Diagnostics Days 2026`, r2_s:`Annual conference report · pocus.edu.rs`,
+  c_kick:`Contacts`, c_h2:`Get in touch with the school`,
+  c_fb:`POCUS Akademija Srbije on Facebook`, c_addr:`Address`
+},
+ru:{
+  back:`← Международная академия POCUS`,
+  crumbs:`Сеть IPA · Сербия (RS)`,
+  hero_sub:`Школа-основатель Международной академии POCUS. Ультразвуковое образование для врачей Сербии с 2019 года.`,
+  tag1:`Школа-основатель`, tag2:`Пожаревац, Сербия`, tag3:`20+ инструкторов`,
+  a_kick:`О школе`, a_h2:`Десять лет ультразвукового образования в Сербии`,
+  a_p:`POCUS Академия Сербии официально основана на учредительной ассамблее в 2023 году, но неформально существует с 2019 года — как продолжение деятельности Сербской ассоциации медицинской визуализации (UMIS), созданной в 2014 году проф. д-ром Желько Марковичем. Академия зарегистрирована как некоммерческое профессиональное объединение врачей для продвижения ультразвуковой диагностики и организации обучения врачей.`,
+  d_kick:`Руководитель`,
+  d_role:`Директор POCUS Академии Сербии · ассоциированный профессор Международной академии POCUS`,
+  d_bio:`Родился в 1961 году, окончил медицинский факультет Белградского университета в 1995-м. Специалист общей и семейной медицины с 2005 года, звание примариуса получил в 2014-м. Эхосонографией занимается с 2001 года, сертифицирован в Сербии, Австрии и США; с 2018 года — инструктор и преподаватель национальных школ ультразвука Сербии. Отмечен наградами Врачебной палаты Сербии и American POCUS Certification Academy.`,
+  p_kick:`Курсы и программы`, p_h2:`От базовых протоколов до полной программы PROBE`,
+  p_p1:`Около двадцати инструкторов Академии ведут регулярное практическое обучение коллег в медицинских учреждениях по всей Сербии. Каждый май Академия проводит главную ежегодную конференцию — Дни POCUS-диагностики, а также осенне-зимний воркшоп в Пожареваце.`,
+  p_p2:`Обучение охватывает базовые протоколы, прицельные исследования отдельных областей и органов, а также специальную программу PROBE — полный курс ультразвуковой диагностики для врачей общей практики, терапевтов и других специальностей.`,
+  pr_abd:`Брюшная полость`, pr_thy:`Щитовидная железа`, pr_br:`Молочная железа`, pr_heart:`Сердце`,
+  ne_m:`дек`, ne_t:`Ближайший групповой воркшоп`, ne_p:`Пожаревац, Сербия · 12 декабря 2026`,
+  f_kick:`Преподаватели`, f_h2:`Инструкторы и эдукаторы`,
+  g_kick:`Галерея`, g_h2:`С наших курсов и воркшопов`,
+  r_kick:`Отчёты`, r_h2:`Яркие события прошлых лет`,
+  r1_t:`Дни POCUS-диагностики 2025`, r1_s:`Отчёт о ежегодной конференции · pocus.edu.rs`,
+  r2_t:`Дни POCUS-диагностики 2026`, r2_s:`Отчёт о ежегодной конференции · pocus.edu.rs`,
+  c_kick:`Контакты`, c_h2:`Связаться со школой`,
+  c_fb:`POCUS Akademija Srbije в Facebook`, c_addr:`Адрес`
+},
+sr:{
+  back:`← Internacionalna POCUS akademija`,
+  crumbs:`IPA mreža · Srbija (RS)`,
+  hero_sub:`Osnivačka škola Internacionalne POCUS akademije. Ultrazvučna edukacija za lekare širom Srbije od 2019. godine.`,
+  tag1:`Osnivačka škola`, tag2:`Požarevac, Srbija`, tag3:`20+ instruktora`,
+  a_kick:`O školi`, a_h2:`Deset godina ultrazvučne edukacije u Srbiji`,
+  a_p:`POCUS Akademija Srbije zvanično je osnovana na Osnivačkoj skupštini 2023. godine, ali neformalno postoji od 2019. godine, kao nastavak aktivnosti Udruženja za medicinski imidžing Srbije (UMIS), koje je osnovao 2014. godine prof. dr Željko Marković. Akademija je registrovana kao neprofitno strukovno udruženje lekara namenjeno promociji ultrazvučne dijagnostike i organizovanju edukacije lekara.`,
+  d_kick:`Direktor`,
+  d_role:`Direktor POCUS Akademije Srbije · vanredni profesor Internacionalne POCUS akademije`,
+  d_bio:`Rođen 1961. godine, diplomirao na Medicinskom fakultetu Univerziteta u Beogradu 1995. Specijalista opšte/porodične medicine od 2005. godine. Zvanje primarijusa stekao je 2014. godine. Ehosonografijom se bavi od 2001. godine, sertifikovan u Srbiji, Austriji i USA. Instruktor i predavač na nacionalnim školama ultrazvuka u Srbiji od 2018. godine. Nagrađivan od Lekarske komore Srbije i American POCUS Certification Academy.`,
+  p_kick:`Kursevi i programi`, p_h2:`Od osnovnih protokola do kompletnog PROBE programa`,
+  p_p1:`Dvadesetak edukatora Akademije izvodi redovnu individualnu obuku kolega u zdravstvenim ustanovama širom Srbije. Svake godine u maju organizujemo veliku godišnju konferenciju — Dane POCUS dijagnostike, kao i zimsko-jesenje okupljanje (radionicu) u Požarevcu.`,
+  p_p2:`Obuka obuhvata osnovne protokole, UZ preglede pojedinačnih regija ili organa, kao i specijalni PROBE program — kompletnu obuku u ultrazvučnoj dijagnostici za lekare opšte medicine, interne medicine i druge.`,
+  pr_abd:`Abdomen`, pr_thy:`Štitna žlezda`, pr_br:`Dojke`, pr_heart:`Srce`,
+  ne_m:`dec`, ne_t:`Naredna velika grupna radionica`, ne_p:`Požarevac, Srbija · 12. decembar 2026.`,
+  f_kick:`Predavači`, f_h2:`Instruktori i edukatori`,
+  g_kick:`Galerija`, g_h2:`Sa naših kurseva i radionica`,
+  r_kick:`Izveštaji`, r_h2:`Upečatljivi događaji iz prošlosti`,
+  r1_t:`Dani POCUS dijagnostike 2025`, r1_s:`Izveštaj sa godišnje konferencije · pocus.edu.rs`,
+  r2_t:`Dani POCUS dijagnostike 2026`, r2_s:`Izveštaj sa godišnje konferencije · pocus.edu.rs`,
+  c_kick:`Kontakt`, c_h2:`Stupite u kontakt sa školom`,
+  c_fb:`POCUS Akademija Srbije na Facebook-u`, c_addr:`Adresa`
+}
+};
+let LANG='en';
+function setLang(l){
+  LANG=l;
+  document.documentElement.lang=l;
+  document.querySelectorAll('[data-i]').forEach(el=>{
+    const v=I18N[l][el.dataset.i];
+    if(v!==undefined) el.innerHTML=v;
+  });
+  document.querySelectorAll('.lang button').forEach(b=>{
+    b.setAttribute('aria-pressed', b.dataset.lang===l ? 'true' : 'false');
+  });
+}
+</script>
+</body>
+</html>
