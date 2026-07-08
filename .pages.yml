@@ -4,60 +4,60 @@ media:
 
 content:
   - name: news
-    label: РќРѕРІРѕСЃС‚Рё В· News
+    label: News
     type: file
     path: news.json
     fields:
       - name: items
-        label: РЎРїРёСЃРѕРє РЅРѕРІРѕСЃС‚РµР№
+        label: News list
         type: object
         list: true
         fields:
           - name: date
-            label: Р”Р°С‚Р° В· Date
+            label: Date
             type: date
           - name: title_en
-            label: Р—Р°РіРѕР»РѕРІРѕРє В· English
+            label: Title - English
             type: string
           - name: title_ru
-            label: Р—Р°РіРѕР»РѕРІРѕРє В· Р СѓСЃСЃРєРёР№
+            label: Title - Russian
             type: string
           - name: title_sr
-            label: Naslov В· Srpski (latinica)
+            label: Title - Serbian (latinica)
             type: string
           - name: link
-            label: РЎСЃС‹Р»РєР° В· Link (РЅРµРѕР±СЏР·Р°С‚РµР»СЊРЅРѕ)
+            label: Link (optional)
             type: string
 
   - name: events
-    label: РЎРѕР±С‹С‚РёСЏ В· Events
+    label: Events
     type: file
     path: events.json
     fields:
       - name: items
-        label: РЎРїРёСЃРѕРє СЃРѕР±С‹С‚РёР№
+        label: Events list
         type: object
         list: true
         fields:
           - name: date
-            label: Р”Р°С‚Р° РєСѓСЂСЃР° В· Date
+            label: Course date
             type: date
           - name: title_en
-            label: РќР°Р·РІР°РЅРёРµ В· English
+            label: Course title - English
             type: string
           - name: title_ru
-            label: РќР°Р·РІР°РЅРёРµ В· Р СѓСЃСЃРєРёР№
+            label: Course title - Russian
             type: string
           - name: title_sr
-            label: Naziv В· Srpski (latinica)
+            label: Course title - Serbian (latinica)
             type: string
           - name: details_en
-            label: Р“РѕСЂРѕРґ Рё РґРµС‚Р°Р»Рё В· English
+            label: City and details - English
             type: string
-            description: "РќР°РїСЂРёРјРµСЂ: PoЕѕarevac, Serbia В· 2 days"
+            description: "Example: Pozarevac, Serbia - 2 days"
           - name: details_ru
-            label: Р“РѕСЂРѕРґ Рё РґРµС‚Р°Р»Рё В· Р СѓСЃСЃРєРёР№
+            label: City and details - Russian
             type: string
           - name: details_sr
-            label: Grad i detalji В· Srpski
+            label: City and details - Serbian
             type: string
