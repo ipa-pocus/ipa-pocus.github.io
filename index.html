@@ -34,8 +34,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>International POCUS Academy — Prototype v0.2</title>
-<meta name="description" content="The global network of point-of-care ultrasound schools. Training, certification and instant certificate verification.">
+<title>International POCUS Academy</title>
+<link rel="icon" type="image/png" href="images/ipa-logo.png">
+<meta name="description" content="The global network of point-of-care ultrasound schools. Training, education, research and international collaboration.">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap');
 
@@ -335,13 +336,9 @@ footer a:hover{color:var(--pulse)}
 <header class="top">
   <div class="wrap top-in">
     <a class="brand" href="#top" aria-label="International POCUS Academy — home">
-      <svg class="brand-mark" viewBox="0 0 34 34" aria-hidden="true">
-        <path d="M17 3 L31 29 A17 17 0 0 1 3 29 Z" fill="none" stroke="#0E7C86" stroke-width="2.2"/>
-        <path d="M17 3 L24.6 17.2" stroke="#F2A93B" stroke-width="2.2" stroke-linecap="round"/>
-        <circle cx="17" cy="22" r="2.4" fill="#0B1720"/>
-      </svg>
+      <img class="brand-mark" src="images/ipa-logo.png" alt="">
       <span class="brand-name">International<br>POCUS Academy</span>
-      <span class="ver mono">v0.4</span>
+      <span class="ver mono">v0.5</span>
     </a>
 
     <button class="burger" aria-label="Menu" aria-expanded="false" onclick="toggleNav(this)">
@@ -385,7 +382,7 @@ footer a:hover{color:var(--pulse)}
     <div class="scan" role="img" aria-label="Stylised ultrasound sector scan">
       <div class="hud tl">IPA&nbsp;· B-MODE<br>PROBE&nbsp;C5-1</div>
       <div class="hud tr">MI&nbsp;0.7&nbsp;&nbsp;TIS&nbsp;0.2<br>GAIN&nbsp;62%</div>
-      <div class="hud bl">PROTOTYPE&nbsp;RENDER&nbsp;·&nbsp;DEMO</div>
+      <div class="hud bl" style="display:flex;align-items:center;gap:8px"><span style="display:inline-flex;width:34px;height:34px;background:#fff;border-radius:50%;padding:3px;box-shadow:0 2px 10px rgba(0,0,0,.45)"><img src="images/ipa-logo.png" alt="" style="width:100%;height:100%"></span>INTERNATIONAL&nbsp;POCUS&nbsp;ACADEMY</div>
       <svg viewBox="0 0 500 490" aria-hidden="true">
         <defs>
           <radialGradient id="fade" cx="50%" cy="6%" r="95%">
@@ -447,7 +444,7 @@ footer a:hover{color:var(--pulse)}
     <div class="ro"><b class="count" data-to="12">0</b><span data-i="ro2">countries in the network</span></div>
     <div class="ro"><b class="count" data-to="14">0</b><span data-i="ro3">national schools &amp; branches</span></div>
     <div class="ro"><b class="count" data-to="38">0</b><span data-i="ro4">courses held this year</span></div>
-    <div class="ro-note mono" data-i="ro_note">Prototype: figures shown are placeholders. On the live site these counters read directly from the certificate registry.</div>
+    <div class="ro-note mono" data-i="ro_note">Prototype: figures shown are placeholders. They will be updated as verified data arrives from network schools.</div>
   </div>
 </div>
 
@@ -458,7 +455,7 @@ footer a:hover{color:var(--pulse)}
     <div class="sec-head">
       <div class="kicker" data-i="net_kick">The network</div>
       <h2 data-i="net_h2">National schools around the world</h2>
-      <p data-i="net_p">Each school teaches to the common IPA curriculum, issues certificates into the shared registry, and runs its own page on this platform — courses, reports and faculty.</p>
+      <p data-i="net_p">Each school teaches to the common IPA curriculum and runs its own page on this platform — courses, reports and faculty.</p>
     </div>
     <div class="grid-schools">
       <a class="school" href="serbia.html"><span class="cc mono">RS</span><h3 data-i="c_rs">Serbia</h3><p data-i="c_rs_d">POCUS Academy of Serbia · founding school</p><span class="tag nat" data-i="tag_nat">National school</span></a>
@@ -488,7 +485,7 @@ footer a:hover{color:var(--pulse)}
     <div class="sec-head">
       <div class="kicker" data-i="edu_kick">Education &amp; certification</div>
       <h2 data-i="edu_h2">One path, four steps</h2>
-      <p data-i="edu_p">From the first protocol course to an academic degree — every step is certified, numbered and verifiable in the registry.</p>
+      <p data-i="edu_p">From the first protocol course to an academic degree — every step follows a clear international pathway.</p>
     </div>
     <div class="ladder">
       <div class="step">
@@ -592,7 +589,7 @@ footer a:hover{color:var(--pulse)}
     <div class="band">
       <div>
         <h2 data-i="band_h2">Open an IPA school in your country</h2>
-        <p data-i="band_p">Get the curriculum, the certificate registry and the support of a working international network. One application starts the conversation.</p>
+        <p data-i="band_p">Get the curriculum, shared standards and the support of a working international network. One application starts the conversation.</p>
       </div>
       <a class="btn btn-pulse" href="#" data-i="band_btn">How it works</a>
     </div>
@@ -628,7 +625,7 @@ footer a:hover{color:var(--pulse)}
     </div>
     <div class="foot-note">
       <span>© 2026 International POCUS Academy</span>
-      <span>PROTOTYPE v0.4 · ALL DATA ON THIS PAGE IS SAMPLE DATA</span>
+      <span>IPA PLATFORM v0.5 · BETA</span>
     </div>
   </div>
 </footer>
@@ -651,24 +648,16 @@ en:{
   hero_cta1:`Find a course`, hero_cta2:`Explore the schools`,
   hero_note:`eFAST · RUSH · FATE · BLUE · PROBE — one global standard`,
   ro1:`clinicians trained`, ro2:`countries in the network`, ro3:`national schools &amp; branches`, ro4:`courses held this year`,
-  ro_note:`Prototype: figures shown are placeholders. On the live site these counters read directly from the certificate registry.`,
-  v_kick:`Certificate registry`, v_h2:`Verify a certificate in ten seconds`,
-  v_p:`Every IPA certificate carries a unique number and a QR code. Scan the code — or type the number and the holder's surname — to see its status, level and validity. Try the live demo below.`,
-  v_l1:`Certificate number`, v_l2:`Holder's surname (Latin)`, v_btn:`Check certificate`,
-  v_demo:`Demo data — tap to fill:`,
-  v_empty:`The result card will appear here — with a colour-coded status: <b style="color:#7FE0B0">active</b>, <b style="color:#FFD08A">expiring</b>, <b style="color:#9FB4BD">expired</b> or <b style="color:#FF9C93">revoked</b>. Contact details are never shown.`,
-  v_fail:`<b>Certificate not found.</b> Check the number and surname, or contact the issuing school.`,
-  v_r1:`Certificate no.`, v_r2:`Issued by`, v_r3:`Issued`, v_r4:`Valid until`,
-  st_ok:`ACTIVE`, st_warn:`EXPIRING SOON`, st_off:`EXPIRED`,
+  ro_note:`Prototype: figures shown are placeholders. They will be updated as verified data arrives from network schools.`,
   net_kick:`The network`, net_h2:`National schools around the world`,
-  net_p:`Each school teaches to the common IPA curriculum, issues certificates into the shared registry, and runs its own page on this platform — courses, reports and faculty.`,
+  net_p:`Each school teaches to the common IPA curriculum and runs its own page on this platform — courses, reports and faculty.`,
   c_rs:`Serbia`, c_rs_d:`POCUS Academy of Serbia · founding school`, c_ru:`Russia`, c_ru_d:`Moscow school of POCUS`,
   c_kz:`Kazakhstan`, c_kg:`Kyrgyzstan`, c_am:`Armenia`, c_tj:`Tajikistan`, c_nat_d:`National POCUS school`,
   c_ba:`Bosnia &amp; Herzegovina`, c_mk:`North Macedonia`, c_ht:`Haiti`, c_us:`United States`, c_ae:`United Arab Emirates`, c_ng:`Nigeria`, c_rep_d:`Regional branch`,
   tag_nat:`National school`, tag_rep:`Representative`,
   join_n:`Your country`, join_d:`Bring the IPA curriculum home.`, join_a:`How to open a school →`,
   edu_kick:`Education &amp; certification`, edu_h2:`One path, four steps`,
-  edu_p:`From the first protocol course to an academic degree — every step is certified, numbered and verifiable in the registry.`,
+  edu_p:`From the first protocol course to an academic degree — every step follows a clear international pathway.`,
   s1_d:`Protocol courses: eFAST, RUSH, FATE, BLUE, PROBE. Hands-on training at a national school.`,
   s2_d:`Advanced multi-protocol certification with a practical exam and a logbook of studies.`,
   s3_d:`Teaching qualification tied to real course activity within the network.`,
@@ -691,7 +680,7 @@ en:{
   e2_m:`Oct`, e2_t:`RUSH: shock protocol workshop`, e2_p:`Almaty, Kazakhstan · 1 day`,
   e3_m:`Oct`, e3_t:`FATE for anaesthesiologists`, e3_p:`Yerevan, Armenia · 2 days`,
   band_h2:`Open an IPA school in your country`,
-  band_p:`Get the curriculum, the certificate registry and the support of a working international network. One application starts the conversation.`,
+  band_p:`Get the curriculum, shared standards and the support of a working international network. One application starts the conversation.`,
   band_btn:`How it works`,
   f_desc:`A network of national point-of-care ultrasound schools. Training, certification, research.`,
   f_plat:`Platform`, f_pub:`Publishing`, f_contact:`Contact`, f_l2:`Certification`
@@ -705,24 +694,16 @@ ru:{
   hero_cta1:`Найти курс`, hero_cta2:`Школы сети`,
   hero_note:`eFAST · RUSH · FATE · BLUE · PROBE — единый мировой стандарт`,
   ro1:`обученных клиницистов`, ro2:`стран в сети`, ro3:`национальных школ и филиалов`, ro4:`курсов в этом году`,
-  ro_note:`Прототип: цифры условные. На живом сайте счётчики читаются напрямую из реестра сертификатов.`,
-  v_kick:`Реестр сертификатов`, v_h2:`Проверьте сертификат за десять секунд`,
-  v_p:`Каждый сертификат IPA имеет уникальный номер и QR-код. Отсканируйте код — или введите номер и фамилию владельца — и увидите статус, уровень и срок действия. Попробуйте демо ниже.`,
-  v_l1:`Номер сертификата`, v_l2:`Фамилия владельца (латиницей)`, v_btn:`Проверить`,
-  v_demo:`Демо-данные — нажмите, чтобы подставить:`,
-  v_empty:`Карточка результата появится здесь — со статусом: <b style="color:#7FE0B0">действует</b>, <b style="color:#FFD08A">истекает</b>, <b style="color:#9FB4BD">истёк</b> или <b style="color:#FF9C93">отозван</b>. Контактные данные никогда не показываются.`,
-  v_fail:`<b>Сертификат не найден.</b> Проверьте номер и фамилию или свяжитесь со школой, выдавшей сертификат.`,
-  v_r1:`Номер сертификата`, v_r2:`Кем выдан`, v_r3:`Дата выдачи`, v_r4:`Действителен до`,
-  st_ok:`ДЕЙСТВУЕТ`, st_warn:`СКОРО ИСТЕКАЕТ`, st_off:`ИСТЁК`,
+  ro_note:`Прототип: цифры условные. Они будут обновляться по мере получения подтверждённых данных от школ сети.`,
   net_kick:`Сеть`, net_h2:`Национальные школы по всему миру`,
-  net_p:`Каждая школа преподаёт по единой программе IPA, вносит сертификаты в общий реестр и ведёт свою страницу на платформе — курсы, отчёты, преподаватели.`,
+  net_p:`Каждая школа преподаёт по единой программе IPA и ведёт свою страницу на платформе — курсы, отчёты, преподаватели.`,
   c_rs:`Сербия`, c_rs_d:`POCUS Academy of Serbia · школа-основатель`, c_ru:`Россия`, c_ru_d:`Московская школа POCUS`,
   c_kz:`Казахстан`, c_kg:`Кыргызстан`, c_am:`Армения`, c_tj:`Таджикистан`, c_nat_d:`Национальная школа POCUS`,
   c_ba:`Босния и Герцеговина`, c_mk:`Северная Македония`, c_ht:`Гаити`, c_us:`США`, c_ae:`ОАЭ`, c_ng:`Нигерия`, c_rep_d:`Региональный филиал`,
   tag_nat:`Национальная школа`, tag_rep:`Представительство`,
   join_n:`Ваша страна`, join_d:`Принесите программу IPA домой.`, join_a:`Как открыть школу →`,
   edu_kick:`Обучение и сертификация`, edu_h2:`Один путь, четыре ступени`,
-  edu_p:`От первого курса по протоколу до академической степени — каждая ступень сертифицируется, нумеруется и проверяется в реестре.`,
+  edu_p:`От первого курса по протоколу до академической степени — каждый этап выстроен в рамках понятной международной траектории.`,
   s1_d:`Протокольные курсы eFAST, RUSH, FATE, BLUE, PROBE. Практическое обучение в национальной школе.`,
   s2_d:`Продвинутая мультипротокольная сертификация с практическим экзаменом и логбуком исследований.`,
   s3_d:`Преподавательская квалификация, привязанная к реальной активности в сети.`,
@@ -745,7 +726,7 @@ ru:{
   e2_m:`окт`, e2_t:`RUSH: воркшоп по протоколу шока`, e2_p:`Алматы, Казахстан · 1 день`,
   e3_m:`окт`, e3_t:`FATE для анестезиологов`, e3_p:`Ереван, Армения · 2 дня`,
   band_h2:`Откройте школу IPA в своей стране`,
-  band_p:`Получите программу, реестр сертификатов и поддержку работающей международной сети. Всё начинается с одной заявки.`,
+  band_p:`Получите программу, общие стандарты и поддержку работающей международной сети. Всё начинается с одной заявки.`,
   band_btn:`Как это работает`,
   f_desc:`Сеть национальных школ ультразвуковой диагностики point-of-care. Обучение, сертификация, исследования.`,
   f_plat:`Платформа`, f_pub:`Издания`, f_contact:`Контакты`, f_l2:`Сертификация`
@@ -759,24 +740,16 @@ sr:{
   hero_cta1:`Pronađi kurs`, hero_cta2:`Istražite škole`,
   hero_note:`eFAST · RUSH · FATE · BLUE · PROBE — jedan globalni standard`,
   ro1:`obučenih kliničara`, ro2:`zemalja u mreži`, ro3:`nacionalnih škola i ogranaka`, ro4:`kurseva ove godine`,
-  ro_note:`Prototip: prikazane cifre su primeri. Na živom sajtu brojači se čitaju direktno iz registra sertifikata.`,
-  v_kick:`Registar sertifikata`, v_h2:`Proverite sertifikat za deset sekundi`,
-  v_p:`Svaki IPA sertifikat nosi jedinstveni broj i QR kod. Skenirajte kod — ili unesite broj i prezime vlasnika — i vidite status, nivo i rok važenja. Isprobajte demo ispod.`,
-  v_l1:`Broj sertifikata`, v_l2:`Prezime vlasnika (latinicom)`, v_btn:`Proveri`,
-  v_demo:`Demo podaci — dodirnite da popunite:`,
-  v_empty:`Kartica rezultata pojaviće se ovde — sa statusom u boji: <b style="color:#7FE0B0">aktivan</b>, <b style="color:#FFD08A">uskoro ističe</b>, <b style="color:#9FB4BD">istekao</b> ili <b style="color:#FF9C93">povučen</b>. Kontakt podaci se nikada ne prikazuju.`,
-  v_fail:`<b>Sertifikat nije pronađen.</b> Proverite broj i prezime ili kontaktirajte školu koja ga je izdala.`,
-  v_r1:`Broj sertifikata`, v_r2:`Izdala`, v_r3:`Datum izdavanja`, v_r4:`Važi do`,
-  st_ok:`AKTIVAN`, st_warn:`USKORO ISTIČE`, st_off:`ISTEKAO`,
+  ro_note:`Prototip: prikazane cifre su primeri. Biće ažurirane kako budu stizali potvrđeni podaci iz škola mreže.`,
   net_kick:`Mreža`, net_h2:`Nacionalne škole širom sveta`,
-  net_p:`Svaka škola predaje po jedinstvenom IPA programu, upisuje sertifikate u zajednički registar i vodi svoju stranicu na platformi — kursevi, izveštaji, predavači.`,
+  net_p:`Svaka škola predaje po jedinstvenom IPA programu i vodi svoju stranicu na platformi — kursevi, izveštaji i predavači.`,
   c_rs:`Srbija`, c_rs_d:`POCUS Academy of Serbia · osnivačka škola`, c_ru:`Rusija`, c_ru_d:`Moskovska POCUS škola`,
   c_kz:`Kazahstan`, c_kg:`Kirgistan`, c_am:`Jermenija`, c_tj:`Tadžikistan`, c_nat_d:`Nacionalna POCUS škola`,
   c_ba:`Bosna i Hercegovina`, c_mk:`Severna Makedonija`, c_ht:`Haiti`, c_us:`SAD`, c_ae:`Ujedinjeni Arapski Emirati`, c_ng:`Nigerija`, c_rep_d:`Regionalni ogranak`,
   tag_nat:`Nacionalna škola`, tag_rep:`Predstavništvo`,
   join_n:`Vaša zemlja`, join_d:`Donesite IPA program u svoju zemlju.`, join_a:`Kako otvoriti školu →`,
   edu_kick:`Edukacija i sertifikacija`, edu_h2:`Jedan put, četiri koraka`,
-  edu_p:`Od prvog kursa protokola do akademskog zvanja — svaki korak je sertifikovan, numerisan i proverljiv u registru.`,
+  edu_p:`Od prvog kursa protokola do akademskog zvanja — svaki korak prati jasan međunarodni put.`,
   s1_d:`Kursevi protokola eFAST, RUSH, FATE, BLUE, PROBE. Praktična obuka u nacionalnoj školi.`,
   s2_d:`Napredna multiprotokolska sertifikacija sa praktičnim ispitom i dnevnikom pregleda.`,
   s3_d:`Nastavna kvalifikacija vezana za stvarnu aktivnost u mreži.`,
@@ -799,7 +772,7 @@ sr:{
   e2_m:`okt`, e2_t:`RUSH: radionica protokola šoka`, e2_p:`Almati, Kazahstan · 1 dan`,
   e3_m:`okt`, e3_t:`FATE za anesteziologe`, e3_p:`Jerevan, Jermenija · 2 dana`,
   band_h2:`Otvorite IPA školu u svojoj zemlji`,
-  band_p:`Dobijate program, registar sertifikata i podršku aktivne međunarodne mreže. Sve počinje jednom prijavom.`,
+  band_p:`Dobijate program, zajedničke standarde i podršku aktivne međunarodne mreže. Sve počinje jednom prijavom.`,
   band_btn:`Kako funkcioniše`,
   f_desc:`Mreža nacionalnih škola point-of-care ultrazvuka. Obuka, sertifikacija, istraživanje.`,
   f_plat:`Platforma`, f_pub:`Izdavaštvo`, f_contact:`Kontakt`, f_l2:`Sertifikacija`
