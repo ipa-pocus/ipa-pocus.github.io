@@ -1,6 +1,16 @@
 media:
-  input: images
-  output: /images
+  - name: images
+    label: Images
+    input: images
+    output: /images
+    categories: [image]
+    rename: safe
+  - name: journals
+    label: Journal PDFs
+    input: journal
+    output: /journal
+    extensions: [pdf]
+    rename: safe
 
 content:
   - name: news
@@ -61,3 +71,79 @@ content:
           - name: details_sr
             label: City and details - Serbian
             type: string
+
+  - name: journal
+    label: Journal archive
+    type: file
+    path: journal.json
+    fields:
+      - name: editor_email
+        label: Editor email
+        type: string
+        required: true
+      - name: items
+        label: Issues
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{fields.title_en}"
+        fields:
+          - name: date
+            label: Publication date
+            type: date
+            required: true
+          - name: series
+            label: Series
+            type: select
+            required: true
+            options:
+              values:
+                - name: journal
+                  label: IPA Journal
+                - name: newsletter
+                  label: Historical IPO Newsletter
+          - name: issue
+            label: Issue label
+            type: string
+            required: true
+          - name: title_en
+            label: Title - English
+            type: string
+            required: true
+          - name: title_ru
+            label: Title - Russian
+            type: string
+            required: true
+          - name: title_sr
+            label: Title - Serbian (latinica)
+            type: string
+            required: true
+          - name: pages
+            label: Number of pages
+            type: number
+            required: true
+          - name: language
+            label: Publication language
+            type: string
+            required: true
+          - name: file
+            label: PDF file
+            type: file
+            required: true
+            options:
+              media: journals
+              extensions: [pdf]
+          - name: cover
+            label: Cover image
+            type: image
+            required: true
+            options:
+              media: images
+              path: journal
+
+settings:
+  content:
+    merge: true
+  commit:
+    identity: user

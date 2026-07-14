@@ -263,6 +263,8 @@ h2{font-family:'IBM Plex Serif',serif;font-weight:600;font-size:clamp(24px,3.2vw
 .cover .jt{font-family:'IBM Plex Serif',serif;font-size:22px;font-weight:600;line-height:1.15}
 .cover .jm{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--pulse);letter-spacing:.16em;margin-top:6px}
 .cover svg{position:absolute;bottom:-12px;right:-16px;width:70%;opacity:.75}
+.cover.cover-real{padding:0;background:#fff;display:block;aspect-ratio:3/4.4}
+.cover-real img{width:100%;height:100%;object-fit:cover;object-position:top}
 .jfacts{display:flex;gap:26px;flex-wrap:wrap;margin-top:22px}
 .jfact b{font-family:'IBM Plex Mono',monospace;font-size:20px;font-weight:500;color:var(--ink);display:block}
 .jfact span{font-size:12.5px;color:var(--muted)}
@@ -338,7 +340,7 @@ footer a:hover{color:var(--pulse)}
     <a class="brand" href="#top" aria-label="International POCUS Academy — home">
       <img class="brand-mark" src="images/ipa-logo.png" alt="">
       <span class="brand-name">International<br>POCUS Academy</span>
-      <span class="ver mono">v0.5</span>
+      <span class="ver mono">v0.6</span>
     </a>
 
     <button class="burger" aria-label="Menu" aria-expanded="false" onclick="toggleNav(this)">
@@ -348,7 +350,7 @@ footer a:hover{color:var(--pulse)}
     <nav class="main" id="mainNav" aria-label="Main">
       <a href="#network" data-i="nav_schools">Schools</a>
       <a href="#education" data-i="nav_edu">Education</a>
-      <a href="#journal" data-i="nav_journal">Journal</a>
+      <a href="journal.html" data-i="nav_journal">Journal</a>
       <a href="#knowledge" data-i="nav_kh">Knowledge Hub</a>
       <a href="#news" data-i="nav_news">News &amp; Events</a>
     </nav>
@@ -516,24 +518,19 @@ footer a:hover{color:var(--pulse)}
 <section id="journal">
   <div class="wrap">
     <div class="journal-grid">
-      <div class="cover" aria-label="Journal cover — placeholder">
-        <span class="jt">IPA Journal</span>
-        <span class="jm">VOL. 12 · No. 1 · 2026</span>
-        <svg viewBox="0 0 200 200" aria-hidden="true">
-          <path d="M100 10 L185 180 A100 100 0 0 1 15 180 Z" fill="none" stroke="#2C4B5C" stroke-width="2"/>
-          <path d="M100 10 L140 92" stroke="#F2A93B" stroke-width="2"/>
-        </svg>
-      </div>
+      <a class="cover cover-real" href="journal/ipa-journal-2026-07.pdf" target="_blank" rel="noopener" aria-label="IPA Journal - July 2026">
+        <img src="images/journal/ipa-journal-2026-07.jpg" alt="IPA Journal - July 2026" loading="lazy">
+      </a>
       <div>
         <div class="kicker" data-i="j_kick">The journal</div>
-        <h2 data-i="j_h2">Peer-reviewed. Open access. DOI-ready.</h2>
-        <p style="color:var(--muted);max-width:56ch" data-i="j_p">The IPA Journal publishes clinical research, protocols and case studies in point-of-care ultrasound twice a year, with an international editorial board drawn from the network's schools. The archive moves to an open-journal platform with ISSN registration and persistent DOIs for every article.</p>
+        <h2 data-i="j_h2">Research, cases and POCUS practice - open to everyone.</h2>
+        <p style="color:var(--muted);max-width:56ch" data-i="j_p">The complete open-access collection brings together the IPA Journal and its predecessor, the IPO Newsletter. Sixteen English-language issues document the Academy's work from 2020 to 2026.</p>
         <div class="jfacts">
-          <div class="jfact"><b>2×</b><span data-i="jf1">issues per year</span></div>
-          <div class="jfact"><b>ISSN</b><span data-i="jf2">registration in progress</span></div>
-          <div class="jfact"><b>DOI</b><span data-i="jf3">per article, planned</span></div>
+          <div class="jfact"><b>16</b><span data-i="jf1">issues online</span></div>
+          <div class="jfact"><b>2020-26</b><span data-i="jf2">archive years</span></div>
+          <div class="jfact"><b>EN</b><span data-i="jf3">publication language</span></div>
         </div>
-        <p style="margin-top:24px"><a class="btn btn-teal" href="#" data-i="j_btn">Read the current issue</a></p>
+        <p style="margin-top:24px;display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-teal" href="journal/ipa-journal-2026-07.pdf" target="_blank" rel="noopener" data-i="j_btn">Read the current issue</a><a class="btn" style="border:1px solid var(--line);background:#fff;color:var(--teal-deep)" href="journal.html" data-i="j_archive">View all issues</a></p>
       </div>
     </div>
   </div>
@@ -612,7 +609,7 @@ footer a:hover{color:var(--pulse)}
       </div>
       <div>
         <h4 data-i="f_pub">Publishing</h4>
-        <a href="#journal">IPA Journal</a>
+        <a href="journal.html">IPA Journal</a>
         <a href="#news">IPA Bulletin</a>
         <a href="#knowledge" data-i="nav_kh">Knowledge Hub</a>
       </div>
@@ -625,7 +622,7 @@ footer a:hover{color:var(--pulse)}
     </div>
     <div class="foot-note">
       <span>© 2026 International POCUS Academy</span>
-      <span>IPA PLATFORM v0.5 · BETA</span>
+      <span>IPA PLATFORM v0.6 · BETA</span>
     </div>
   </div>
 </footer>
@@ -663,9 +660,9 @@ en:{
   s3_d:`Teaching qualification tied to real course activity within the network.`,
   s4_d:`Academic recognition of published work, courses taught and clinical contribution.`,
   val5:`valid 5 years`, val3:`valid 3 years`, vlife:`lifetime`,
-  j_kick:`The journal`, j_h2:`Peer-reviewed. Open access. DOI-ready.`,
-  j_p:`The IPA Journal publishes clinical research, protocols and case studies in point-of-care ultrasound twice a year, with an international editorial board drawn from the network's schools. The archive moves to an open-journal platform with ISSN registration and persistent DOIs for every article.`,
-  jf1:`issues per year`, jf2:`registration in progress`, jf3:`per article, planned`, j_btn:`Read the current issue`,
+  j_kick:`The journal`, j_h2:`Research, cases and POCUS practice - open to everyone.`,
+  j_p:`The complete open-access collection brings together the IPA Journal and its predecessor, the IPO Newsletter. Sixteen English-language issues document the Academy's work from 2020 to 2026.`,
+  jf1:`issues online`, jf2:`archive years`, jf3:`publication language`, j_btn:`Read the current issue`, j_archive:`View all issues`,
   k_kick:`Knowledge hub`, k_h2:`Protocols, history and what comes next`,
   k_p:`A growing open library: step-by-step protocol guides with images and video, the history of POCUS, interventional techniques and AI in ultrasound.`,
   t1_t:`History of POCUS`, t1_d:`From the first A-mode probes to ultrasound in every pocket — how point-of-care imaging changed acute medicine.`,
@@ -709,9 +706,9 @@ ru:{
   s3_d:`Преподавательская квалификация, привязанная к реальной активности в сети.`,
   s4_d:`Академическое признание публикаций, преподавания и клинического вклада.`,
   val5:`действует 5 лет`, val3:`действует 3 года`, vlife:`бессрочно`,
-  j_kick:`Журнал`, j_h2:`Рецензируемый. Открытый доступ. Готов к DOI.`,
-  j_p:`Журнал IPA публикует клинические исследования, протоколы и клинические случаи по POCUS дважды в год; международная редколлегия формируется из школ сети. Архив переезжает на издательскую платформу с регистрацией ISSN и постоянными DOI для каждой статьи.`,
-  jf1:`выпуска в год`, jf2:`регистрация в процессе`, jf3:`для каждой статьи, в планах`, j_btn:`Читать свежий номер`,
+  j_kick:`Журнал`, j_h2:`Исследования, клинические случаи и практика POCUS - открыто для всех.`,
+  j_p:`Полная коллекция в открытом доступе объединяет журнал IPA и его предшественника - бюллетень IPO. Шестнадцать англоязычных выпусков рассказывают о работе Академии с 2020 по 2026 год.`,
+  jf1:`выпусков онлайн`, jf2:`годы архива`, jf3:`язык публикации`, j_btn:`Читать свежий номер`, j_archive:`Все выпуски`,
   k_kick:`База знаний`, k_h2:`Протоколы, история и то, что дальше`,
   k_p:`Растущая открытая библиотека: пошаговые руководства по протоколам с изображениями и видео, история POCUS, интервенционные техники и ИИ в ультразвуке.`,
   t1_t:`История POCUS`, t1_d:`От первых A-режимных датчиков до УЗИ в каждом кармане — как прикроватная визуализация изменила неотложную медицину.`,
@@ -755,9 +752,9 @@ sr:{
   s3_d:`Nastavna kvalifikacija vezana za stvarnu aktivnost u mreži.`,
   s4_d:`Akademsko priznanje publikacija, nastave i kliničkog doprinosa.`,
   val5:`važi 5 godina`, val3:`važi 3 godine`, vlife:`doživotno`,
-  j_kick:`Časopis`, j_h2:`Recenziran. Otvoren pristup. Spreman za DOI.`,
-  j_p:`IPA časopis objavljuje klinička istraživanja, protokole i prikaze slučajeva iz POCUS-a dva puta godišnje; međunarodni urednički odbor čine škole mreže. Arhiva prelazi na izdavačku platformu sa ISSN registracijom i trajnim DOI brojevima za svaki članak.`,
-  jf1:`broja godišnje`, jf2:`registracija u toku`, jf3:`za svaki članak, planirano`, j_btn:`Pročitajte aktuelni broj`,
+  j_kick:`Časopis`, j_h2:`Istraživanja, prikazi slučajeva i POCUS praksa - otvoreno za sve.`,
+  j_p:`Kompletna zbirka u otvorenom pristupu objedinjuje IPA časopis i njegovog prethodnika, IPO bilten. Šesnaest brojeva na engleskom jeziku beleži rad Akademije od 2020. do 2026. godine.`,
+  jf1:`brojeva onlajn`, jf2:`godine arhive`, jf3:`jezik izdanja`, j_btn:`Pročitajte aktuelni broj`, j_archive:`Svi brojevi`,
   k_kick:`Baza znanja`, k_h2:`Protokoli, istorija i ono što sledi`,
   k_p:`Rastuća otvorena biblioteka: vodiči kroz protokole korak po korak, sa slikama i videom, istorija POCUS-a, intervencijske tehnike i veštačka inteligencija u ultrazvuku.`,
   t1_t:`Istorija POCUS-a`, t1_d:`Od prvih A-mod sondi do ultrazvuka u svakom džepu — kako je snimanje uz postelju promenilo urgentnu medicinu.`,
