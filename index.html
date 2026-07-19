@@ -351,7 +351,7 @@ footer a:hover{color:var(--pulse)}
       <a href="#network" data-i="nav_schools">Schools</a>
       <a href="#education" data-i="nav_edu">Education</a>
       <a href="journal.html" data-i="nav_journal">Journal</a>
-      <a href="#knowledge" data-i="nav_kh">Knowledge Hub</a>
+      <a href="curriculum.html" data-i="nav_kh">Curriculum</a>
       <a href="#news" data-i="nav_news">News &amp; Events</a>
     </nav>
 
@@ -540,24 +540,25 @@ footer a:hover{color:var(--pulse)}
 <section id="knowledge">
   <div class="wrap">
     <div class="sec-head">
-      <div class="kicker" data-i="k_kick">Knowledge hub</div>
-      <h2 data-i="k_h2">Protocols, history and what comes next</h2>
-      <p data-i="k_p">A growing open library: step-by-step protocol guides with images and video, the history of POCUS, interventional techniques and AI in ultrasound.</p>
+      <div class="kicker" data-i="k_kick">POCUS curriculum</div>
+      <h2 data-i="k_h2">From probe placement to clinical decision</h2>
+      <p data-i="k_p">A structured learning platform connecting foundations, organ-based acquisition, clinical protocols and model-specific device guidance.</p>
     </div>
     <div class="protocols">
       <a class="proto" href="what-is-pocus.html" data-i="pocus_intro">What is POCUS?</a>
-      <a class="proto" href="#">eFAST</a>
-      <a class="proto" href="#">RUSH</a>
-      <a class="proto" href="#">FATE</a>
-      <a class="proto" href="#">BLUE</a>
-      <a class="proto" href="#">PROBE</a>
-      <a class="proto" href="#">MSK&nbsp;US</a>
+      <a class="proto" href="protocol-efast.html">eFAST</a>
+      <a class="proto" href="curriculum.html#protocols">RUSH</a>
+      <a class="proto" href="curriculum.html#protocols">FATE</a>
+      <a class="proto" href="curriculum.html#protocols">BLUE</a>
+      <a class="proto" href="curriculum.html#protocols">PROBE</a>
+      <a class="proto" href="devices.html">Devices&nbsp;&amp;&nbsp;Knobology</a>
     </div>
     <div class="topics">
       <div class="topic"><h3 data-i="t1_t">History of POCUS</h3><p data-i="t1_d">From the first A-mode probes to ultrasound in every pocket — how point-of-care imaging changed acute medicine.</p></div>
       <div class="topic"><h3 data-i="t2_t">Interventional POCUS</h3><p data-i="t2_d">Ultrasound-guided vascular access, blocks and drainage: technique pages for anaesthesia and the ICU.</p></div>
       <div class="topic"><h3 data-i="t3_t">AI &amp; ultrasound</h3><p data-i="t3_d">Neural networks that read images at the bedside — reviews, tools and honest limitations.</p></div>
     </div>
+    <p style="margin-top:26px;display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-teal" href="curriculum.html">Explore curriculum</a><a class="btn" style="border:1px solid var(--line);background:#fff;color:var(--teal-deep)" href="devices.html">Devices &amp; knobology</a></p>
   </div>
 </section>
 
@@ -612,7 +613,7 @@ footer a:hover{color:var(--pulse)}
         <h4 data-i="f_pub">Publishing</h4>
         <a href="journal.html">IPA Journal</a>
         <a href="#news">IPA Bulletin</a>
-        <a href="#knowledge" data-i="nav_kh">Knowledge Hub</a>
+        <a href="curriculum.html" data-i="nav_kh">Curriculum</a>
       </div>
       <div>
         <h4 data-i="f_contact">Contact</h4>
@@ -638,7 +639,7 @@ footer a:hover{color:var(--pulse)}
    ============================================================ */
 const I18N = {
 en:{
-  nav_schools:`Schools`, nav_edu:`Education`, nav_journal:`Journal`, nav_kh:`Knowledge Hub`, nav_news:`News & Events`,
+  nav_schools:`Schools`, nav_edu:`Education`, nav_journal:`Journal`, nav_kh:`Curriculum`, nav_news:`News & Events`,
   btn_verify_top:`Find a course`,
   hero_eyebrow:`Global network · founded in Serbia`,
   hero_h1:`Point-of-care ultrasound, taught to <em>one standard</em> — worldwide.`,
@@ -664,8 +665,8 @@ en:{
   j_kick:`The journal`, j_h2:`Research, cases and POCUS practice - open to everyone.`,
   j_p:`The complete open-access collection brings together the IPA Journal and its predecessor, the IPO Newsletter. Sixteen English-language issues document the Academy's work from 2020 to 2026.`,
   jf1:`issues online`, jf2:`archive years`, jf3:`publication language`, j_btn:`Read the current issue`, j_archive:`View all issues`,
-  k_kick:`Knowledge hub`, k_h2:`Protocols, history and what comes next`, pocus_intro:`What is POCUS?`,
-  k_p:`A growing open library: step-by-step protocol guides with images and video, the history of POCUS, interventional techniques and AI in ultrasound.`,
+  k_kick:`POCUS curriculum`, k_h2:`From probe placement to clinical decision`, pocus_intro:`What is POCUS?`,
+  k_p:`A structured learning platform connecting foundations, organ-based acquisition, clinical protocols and model-specific device guidance.`,
   t1_t:`History of POCUS`, t1_d:`From the first A-mode probes to ultrasound in every pocket — how point-of-care imaging changed acute medicine.`,
   t2_t:`Interventional POCUS`, t2_d:`Ultrasound-guided vascular access, blocks and drainage: technique pages for anaesthesia and the ICU.`,
   t3_t:`AI &amp; ultrasound`, t3_d:`Neural networks that read images at the bedside — reviews, tools and honest limitations.`,
@@ -684,7 +685,7 @@ en:{
   f_plat:`Platform`, f_pub:`Publishing`, f_contact:`Contact`, f_l2:`Certification`
 },
 ru:{
-  nav_schools:`Школы`, nav_edu:`Обучение`, nav_journal:`Журнал`, nav_kh:`База знаний`, nav_news:`Новости и события`,
+  nav_schools:`Школы`, nav_edu:`Обучение`, nav_journal:`Журнал`, nav_kh:`Программа`, nav_news:`Новости и события`,
   btn_verify_top:`Найти курс`,
   hero_eyebrow:`Глобальная сеть · основана в Сербии`,
   hero_h1:`Ультразвук у постели пациента: обучение по <em>единому стандарту</em> — по всему миру.`,
@@ -710,8 +711,8 @@ ru:{
   j_kick:`Журнал`, j_h2:`Исследования, клинические случаи и практика POCUS - открыто для всех.`,
   j_p:`Полная коллекция в открытом доступе объединяет журнал IPA и его предшественника - бюллетень IPO. Шестнадцать англоязычных выпусков рассказывают о работе Академии с 2020 по 2026 год.`,
   jf1:`выпусков онлайн`, jf2:`годы архива`, jf3:`язык публикации`, j_btn:`Читать свежий номер`, j_archive:`Все выпуски`,
-  k_kick:`База знаний`, k_h2:`Протоколы, история и то, что дальше`, pocus_intro:`Что такое POCUS?`,
-  k_p:`Растущая открытая библиотека: пошаговые руководства по протоколам с изображениями и видео, история POCUS, интервенционные техники и ИИ в ультразвуке.`,
+  k_kick:`Программа POCUS`, k_h2:`От положения датчика до клинического решения`, pocus_intro:`Что такое POCUS?`,
+  k_p:`Структурированная учебная платформа: основы, получение изображений по органам, клинические протоколы и настройки конкретных моделей аппаратов.`,
   t1_t:`История POCUS`, t1_d:`От первых A-режимных датчиков до УЗИ в каждом кармане — как прикроватная визуализация изменила неотложную медицину.`,
   t2_t:`Интервенционный POCUS`, t2_d:`Сосудистый доступ, блокады и дренирование под УЗ-контролем: страницы техник для анестезиологии и ОРИТ.`,
   t3_t:`ИИ и ультразвук`, t3_d:`Нейросети, читающие изображения у постели пациента — обзоры, инструменты и честные ограничения.`,
@@ -730,7 +731,7 @@ ru:{
   f_plat:`Платформа`, f_pub:`Издания`, f_contact:`Контакты`, f_l2:`Сертификация`
 },
 sr:{
-  nav_schools:`Škole`, nav_edu:`Edukacija`, nav_journal:`Časopis`, nav_kh:`Baza znanja`, nav_news:`Vesti i događaji`,
+  nav_schools:`Škole`, nav_edu:`Edukacija`, nav_journal:`Časopis`, nav_kh:`Kurikulum`, nav_news:`Vesti i događaji`,
   btn_verify_top:`Pronađi kurs`,
   hero_eyebrow:`Globalna mreža · osnovana u Srbiji`,
   hero_h1:`Point-of-care ultrazvuk: obuka po <em>jedinstvenom standardu</em> — širom sveta.`,
@@ -756,8 +757,8 @@ sr:{
   j_kick:`Časopis`, j_h2:`Istraživanja, prikazi slučajeva i POCUS praksa - otvoreno za sve.`,
   j_p:`Kompletna zbirka u otvorenom pristupu objedinjuje IPA časopis i njegovog prethodnika, IPO bilten. Šesnaest brojeva na engleskom jeziku beleži rad Akademije od 2020. do 2026. godine.`,
   jf1:`brojeva onlajn`, jf2:`godine arhive`, jf3:`jezik izdanja`, j_btn:`Pročitajte aktuelni broj`, j_archive:`Svi brojevi`,
-  k_kick:`Baza znanja`, k_h2:`Protokoli, istorija i ono što sledi`, pocus_intro:`Šta je POCUS?`,
-  k_p:`Rastuća otvorena biblioteka: vodiči kroz protokole korak po korak, sa slikama i videom, istorija POCUS-a, intervencijske tehnike i veštačka inteligencija u ultrazvuku.`,
+  k_kick:`POCUS kurikulum`, k_h2:`Od položaja sonde do kliničke odluke`, pocus_intro:`Šta je POCUS?`,
+  k_p:`Strukturisana obrazovna platforma koja povezuje osnove, snimanje po organima, kliničke protokole i uputstva za konkretne uređaje.`,
   t1_t:`Istorija POCUS-a`, t1_d:`Od prvih A-mod sondi do ultrazvuka u svakom džepu — kako je snimanje uz postelju promenilo urgentnu medicinu.`,
   t2_t:`Intervencijski POCUS`, t2_d:`Vaskularni pristup, blokovi i drenaže pod kontrolom ultrazvuka: tehnike za anesteziju i intenzivnu negu.`,
   t3_t:`VI i ultrazvuk`, t3_d:`Neuronske mreže koje čitaju slike uz postelju bolesnika — pregledi, alati i pošteno o ograničenjima.`,

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>POCUS Curriculum — International POCUS Academy</title>
+  <meta name="description" content="A structured POCUS curriculum from probe placement and image acquisition to clinical decision-making.">
+  <link rel="icon" href="images/ipa-logo.png" type="image/png">
+  <link rel="stylesheet" href="curriculum.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-in">
+      <a class="brand" href="index.html"><img src="images/ipa-logo.png" alt=""><strong>International<br>POCUS Academy</strong></a>
+      <span class="product-name">Curriculum</span>
+      <button class="menu-btn" aria-label="Menu" aria-expanded="false" onclick="toggleCurriculumNav(this)">Menu</button>
+      <nav class="main-nav" id="curriculumNav" aria-label="Main navigation">
+        <a href="index.html">Academy</a>
+        <a href="curriculum.html" aria-current="page">Curriculum</a>
+        <a href="devices.html">Devices</a>
+        <a href="journal.html">Journal</a>
+        <a class="header-cta" href="index.html#education">Find a course</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="crumbs"><a href="index.html">IPA</a> / Curriculum</div>
+          <div class="eyebrow">Open learning platform</div>
+          <h1>From probe placement to <em>clinical decision.</em></h1>
+          <p class="hero-copy">One structured learning path connects ultrasound foundations, organ-based acquisition, bedside protocols and model-specific device guidance.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#start">Start learning <span aria-hidden="true">→</span></a>
+            <a class="btn btn-secondary" href="#protocols">Explore protocols</a>
+          </div>
+        </div>
+        <div class="hero-map" aria-label="Curriculum map illustration">
+          <span class="map-label">IPA learning architecture</span>
+          <div class="orbit o1"></div><div class="orbit o2"></div>
+          <div class="map-core">CLINICAL<br>DECISION</div>
+          <div class="map-node n1"><b>01</b>Foundations</div>
+          <div class="map-node n2"><b>02</b>Organ systems</div>
+          <div class="map-node n3"><b>03</b>Protocols</div>
+          <div class="map-node n4"><b>04</b>Device mapping</div>
+          <p class="map-note">One neutral clinical standard. Multiple verified ways to perform it.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="readout">
+      <div class="wrap readout-grid">
+        <div class="readout-item"><b>4 layers</b><span>from foundations to devices</span></div>
+        <div class="readout-item"><b>9 systems</b><span>organ-based acquisition</span></div>
+        <div class="readout-item"><b>5 protocols</b><span>first curriculum release</span></div>
+        <div class="readout-item"><b>EN · RU · KK · SR</b><span>shared multilingual structure</span></div>
+      </div>
+    </div>
+
+    <section class="section" id="start">
+      <div class="wrap">
+        <div class="section-head"><div class="kicker">Choose an entry point</div><h2>Start with what you need today</h2><p>The same knowledge is organised around the learner’s task—not around a long list of unrelated articles.</p></div>
+        <div class="entry-grid">
+          <a class="entry-card" href="#foundations"><span class="entry-mark"></span><span class="entry-no">01 / START HERE</span><h3>Foundations</h3><p>Physics, probes, orientation, artifacts and a reliable approach to image optimisation.</p><span class="entry-meta">8 learning blocks →</span></a>
+          <a class="entry-card" href="#systems"><span class="entry-mark"></span><span class="entry-no">02 / ACQUISITION</span><h3>Organ systems</h3><p>Learn to obtain and recognise lung, cardiac, vascular, abdominal and other core views.</p><span class="entry-meta">9 organ modules →</span></a>
+          <a class="entry-card" href="#protocols"><span class="entry-mark"></span><span class="entry-no">03 / DECISION</span><h3>Clinical protocols</h3><p>Combine views into a repeatable bedside pathway for trauma, shock or respiratory failure.</p><span class="entry-meta">5 protocol pathways →</span></a>
+          <a class="entry-card" href="devices.html"><span class="entry-mark"></span><span class="entry-no">04 / EQUIPMENT</span><h3>Devices &amp; knobology</h3><p>Translate neutral acquisition requirements into verified steps for an exact device model.</p><span class="entry-meta">Open device guide →</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section white" id="foundations">
+      <div class="wrap">
+        <div class="section-head"><div class="kicker">Recommended pathway</div><h2>One sequence, four levels</h2><p>Organ modules teach image acquisition. Protocols teach decisions. Device pages teach how to execute the same task on a particular machine.</p></div>
+        <div class="path">
+          <div class="path-step"><b>01</b><h3>Understand</h3><p>Physics, probes, orientation and artifacts.</p></div>
+          <div class="path-step"><b>02</b><h3>Acquire</h3><p>Patient position, probe placement and image-quality criteria.</p></div>
+          <div class="path-step"><b>03</b><h3>Interpret</h3><p>Normal findings, pathology, mimics and limitations.</p></div>
+          <div class="path-step"><b>04</b><h3>Decide</h3><p>Clinical integration, escalation and documented competence.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="systems">
+      <div class="wrap">
+        <div class="section-head"><div class="kicker">Organ systems</div><h2>Learn to obtain the image first</h2><p>Every module will pair patient position, probe placement, anatomy and the ultrasound image in the IPA Sono-Atlas format.</p></div>
+        <div class="filter-row" aria-label="Module filters">
+          <button class="filter active" data-filter="all">All modules</button>
+          <button class="filter" data-filter="core">Core</button>
+          <button class="filter" data-filter="advanced">Advanced</button>
+        </div>
+        <div class="module-grid">
+          <a class="module" data-module="core" href="#"><div class="module-visual"><div class="module-top"><span>LUS · B-MODE</span><span>CORE</span></div></div><div class="module-body"><span class="module-tag">Respiratory</span><h3>Lung ultrasound</h3><p>Pleural line, A-lines, B-lines, consolidation, effusion and pneumothorax.</p><div class="module-foot"><span>7 lessons · 35 min</span><span>Preview →</span></div></div></a>
+          <a class="module" data-module="core" href="#"><div class="module-visual"><div class="module-top"><span>FOCUS · PHASED</span><span>CORE</span></div></div><div class="module-body"><span class="module-tag">Circulation</span><h3>Focused cardiac</h3><p>Core windows, global function, right heart, pericardium and volume context.</p><div class="module-foot"><span>9 lessons · 50 min</span><span>Preview →</span></div></div></a>
+          <a class="module" data-module="core" href="#"><div class="module-visual"><div class="module-top"><span>VESSEL · LINEAR</span><span>CORE</span></div></div><div class="module-body"><span class="module-tag">Vascular</span><h3>Vascular ultrasound</h3><p>Vein and artery recognition, compressibility, DVT views and access planning.</p><div class="module-foot"><span>6 lessons · 30 min</span><span>Preview →</span></div></div></a>
+          <a class="module" data-module="core" href="#"><div class="module-visual"><div class="module-top"><span>ABD · CURVILINEAR</span><span>CORE</span></div></div><div class="module-body"><span class="module-tag">Abdomen</span><h3>Abdominal</h3><p>Free fluid, aorta, gallbladder and selected acute abdominal applications.</p><div class="module-foot"><span>8 lessons · 45 min</span><span>Preview →</span></div></div></a>
+          <a class="module" data-module="advanced" href="#"><div class="module-visual"><div class="module-top"><span>RENAL · CURVILINEAR</span><span>ADV</span></div></div><div class="module-body"><span class="module-tag">Urinary</span><h3>Renal &amp; bladder</h3><p>Hydronephrosis, bladder volume and focused urinary tract assessment.</p><div class="module-foot"><span>5 lessons · 25 min</span><span>Preview →</span></div></div></a>
+          <a class="module" data-module="advanced" href="#"><div class="module-visual"><div class="module-top"><span>TCD · PHASED</span><span>ADV</span></div></div><div class="module-body"><span class="module-tag">Neurology</span><h3>Transcranial</h3><p>Windows, landmarks and an introduction to Doppler-based assessment.</p><div class="module-foot"><span>6 lessons · 40 min</span><span>Preview →</span></div></div></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark" id="protocols">
+      <div class="wrap">
+        <div class="section-head"><div class="kicker">Clinical protocols</div><h2>Turn images into a bedside pathway</h2><p>Each protocol shows the question, acquisition sequence, interpretation limits and the decision it can support.</p></div>
+        <div class="protocol-grid">
+          <a class="protocol" href="protocol-efast.html"><span class="protocol-code">TRAUMA / 01</span><h3>eFAST</h3><p>Focused assessment for free fluid and pneumothorax in trauma.</p><span>OPEN PROTOTYPE →</span></a>
+          <a class="protocol" href="#"><span class="protocol-code">DYSPNOEA / 02</span><h3>BLUE</h3><p>A structured lung ultrasound approach in acute respiratory failure.</p><span>STRUCTURE READY</span></a>
+          <a class="protocol" href="#"><span class="protocol-code">SHOCK / 03</span><h3>RUSH</h3><p>Heart, tank and pipes in the undifferentiated shocked patient.</p><span>STRUCTURE READY</span></a>
+          <a class="protocol" href="#"><span class="protocol-code">CARDIAC / 04</span><h3>FATE</h3><p>A focused transthoracic pathway for perioperative assessment.</p><span>STRUCTURE READY</span></a>
+          <a class="protocol" href="#"><span class="protocol-code">GENERAL / 05</span><h3>PROBE</h3><p>A repeatable multi-organ bedside examination framework.</p><span>STRUCTURE READY</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="device-band">
+          <div><div class="kicker">Devices &amp; knobology</div><h2>One clinical task. Every verified device.</h2><p>The curriculum describes the neutral requirement—such as selecting a cardiac preset or placing the focal zone. Device profiles explain the exact model-specific controls without changing the clinical recommendation.</p><div class="hero-actions"><a class="btn btn-light" href="devices.html">Explore device structure →</a></div></div>
+          <div class="console" aria-label="Device settings illustration"><div class="console-head"><span>IPA · DEVICE PROFILE</span><span>MODEL / SOFTWARE</span></div><div class="console-screen"><div class="control"><b>PRESET</b><span>eFAST</span></div><div class="control"><b>PROBE</b><span>C5–1</span></div><div class="control"><b>DEPTH</b><span>14 cm</span></div><div class="control"><b>GAIN</b><span>58%</span></div></div><p class="console-note">Illustrative values only · exact settings require model-specific verification.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section white" style="padding-block:34px"><div class="wrap"><div class="status-strip"><span class="status-dot"></span><p><b>Structure prototype.</b> Clinical statements, device values, translations and final illustrations remain in editorial review and are not yet educational guidance.</p></div></div></section>
+  </main>
+
+  <footer><div class="wrap footer-in"><div>© 2026 International POCUS Academy · Curriculum prototype</div><div><a href="index.html">Academy</a><a href="devices.html">Devices</a><a href="journal.html">Journal</a></div></div></footer>
+  <script src="curriculum.js"></script>
+</body>
+</html>
